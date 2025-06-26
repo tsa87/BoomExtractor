@@ -144,7 +144,8 @@ Return ONLY the JSON, no additional text or explanation.
                 if key not in workflow_data:
                     raise ValueError(f"Missing required key: {key}")
 
-            return workflow_data
+            # Return the correct format with success key
+            return {"success": True, "workflow": workflow_data}
 
         except json.JSONDecodeError as e:
             logger.error(f"Invalid JSON response from Gemini: {e}")
