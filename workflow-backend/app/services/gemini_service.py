@@ -14,7 +14,7 @@ class GeminiService:
         if config.GEMINI_API_KEY and config.GEMINI_API_KEY.strip():
             genai.configure(api_key=config.GEMINI_API_KEY)
             # Use the correct model name for current API
-            self.model = genai.GenerativeModel('gemini-1.5-flash-latest')
+            self.model = genai.GenerativeModel('gemini-2.0-flash')
         else:
             self.model = None
             logger.warning(
