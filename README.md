@@ -96,7 +96,17 @@ To get a Google AI API key:
 
 ## 🚀 Running the Application
 
-### Start the Backend Server
+### Quick Start (One Command)
+
+```bash
+cd workflow-backend && source backend-env/bin/activate && python -m uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload & cd ../workflow-visualizer && npm start
+```
+
+This will start both the backend (port 8000) and frontend (port 3000) services simultaneously.
+
+### Manual Start (Step by Step)
+
+#### Start the Backend Server
 
 ```bash
 cd workflow-backend
@@ -114,7 +124,7 @@ The API will be available at `http://localhost:8000`
 - API Documentation: `http://localhost:8000/docs`
 - Health Check: `http://localhost:8000/api/health`
 
-### Start the Frontend Application
+#### Start the Frontend Application
 
 ```bash
 cd workflow-visualizer

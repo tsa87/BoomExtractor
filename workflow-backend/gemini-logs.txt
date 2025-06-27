@@ -1,0 +1,3127 @@
+INFO:     Will watch for changes in these directories: ['/Users/tonyshen/Code/BoomExtractor/workflow-backend']
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [32759] using WatchFiles
+INFO:     Started server process [32762]
+INFO:     Waiting for application startup.
+2025-06-27 12:12:48,940 - app.main - INFO - Starting Workflow Generator API
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'app/services/gemini_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2025-06-27 12:13:21,392 - app.main - INFO - Shutting down Workflow Generator API
+INFO:     Application shutdown complete.
+INFO:     Finished server process [32762]
+INFO:     Started server process [32819]
+INFO:     Waiting for application startup.
+2025-06-27 12:13:22,062 - app.main - INFO - Starting Workflow Generator API
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'app/services/gemini_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2025-06-27 12:13:41,470 - app.main - INFO - Shutting down Workflow Generator API
+INFO:     Application shutdown complete.
+INFO:     Finished server process [32819]
+INFO:     Started server process [32846]
+INFO:     Waiting for application startup.
+2025-06-27 12:13:42,165 - app.main - INFO - Starting Workflow Generator API
+INFO:     Application startup complete.
+2025-06-27 12:13:51,542 - app.api.upload - INFO - Processing PDF: srep42476.pdf (3197437 bytes)
+2025-06-27 12:13:51,542 - app.services.workflow_generator - INFO - Extracting text from PDF: srep42476.pdf
+2025-06-27 12:13:51,546 - app.services.pdf_parser - INFO - Trying pymupdf4llm for /var/folders/h5/0dkg2lpd1zqc9kw115p9m4sm0000gn/T/tmpc72eaal6.pdf
+2025-06-27 12:13:53,072 - app.services.pdf_parser - INFO - ✅ pymupdf4llm extracted 44313 characters
+2025-06-27 12:13:53,074 - app.services.workflow_generator - INFO - Generating workflow from extracted text (44313 chars)
+2025-06-27 12:14:09,081 - app.services.gemini_service - INFO - 🔍 RAW GEMINI RESPONSE:
+2025-06-27 12:14:09,082 - app.services.gemini_service - INFO - ================================================================================
+2025-06-27 12:14:09,082 - app.services.gemini_service - INFO - ```json
+{
+  "stages": {
+    "S1": {
+      "label": "CRISPR/Cas9 Construct Design and Validation",
+      "description": "Design and validation of CRISPR/Cas9 constructs targeting the nonagouti (a) gene in MSM/Ms mice."
+    },
+    "S2": {
+      "label": "Zygote Injection and Embryo Culture",
+      "description": "Microinjection of CRISPR/Cas9 constructs into MSM/Ms mouse zygotes followed by in vitro culture."
+    },
+    "S3": {
+      "label": "Embryo Transfer and Offspring Generation",
+      "description": "Transfer of cultured embryos into pseudopregnant recipient mice and subsequent offspring weaning."
+    },
+    "S4": {
+      "label": "Genotyping and Phenotypic Characterization",
+      "description": "Genotyping of offspring to identify homozygous knockout mice, followed by a comprehensive phenotypic analysis."
+    },
+    "S5": {
+      "label": "Behavioral Analysis",
+      "description": "Behavioral testing of homozygous knockout mice to assess changes in activity and tameness."
+    },
+    "S6": {
+      "label": "Molecular Analysis of Midbrain",
+      "description": "Gene expression and biochemical analysis of the midbrain to explore the molecular basis of observed behavioral changes."
+    }
+  },
+  "stageEdges": [
+    {
+      "from": "S1",
+      "to": "S2",
+      "label": "Construct Validation",
+      "description": "Validated CRISPR constructs are used for zygote injection."
+    },
+    {
+      "from": "S2",
+      "to": "S3",
+      "label": "Embryo Development",
+      "description": "Successfully cultured embryos are transferred for implantation."
+    },
+    {
+      "from": "S3",
+      "to": "S4",
+      "label": "Offspring Born",
+      "description": "Weaned offspring are genotyped and phenotypically characterized."
+    },
+    {
+      "from": "S4",
+      "to": "S5",
+      "label": "Phenotypic Screening",
+      "description": "Phenotypically characterized mice undergo behavioral assessments."
+    },
+    {
+      "from": "S5",
+      "to": "S6",
+      "label": "Behavioral Changes",
+      "description": "Significant behavioral changes prompt molecular analysis of the midbrain."
+    }
+  ],
+  "steps": {
+    "S1.1": {
+      "label": "sgRNA Design",
+      "type": "Computational",
+      "description": "Design of single guide RNAs (sgRNAs) targeting the nonagouti gene.",
+      "metadata": {
+        "Target Gene": "nonagouti (a)",
+        "Software": "Unspecified"
+      }
+    },
+    "S1.2": {
+      "label": "In vitro Transfection",
+      "type": "Experimental",
+      "description": "In vitro transfection of HEK293 cells with sgRNAs to assess efficiency.",
+      "metadata": {
+        "Cell Line": "HEK293",
+        "Transfection Method": "Unspecified"
+      }
+    },
+    "S2.1": {
+      "label": "Zygote Microinjection",
+      "type": "Experimental",
+      "description": "Microinjection of CRISPR/Cas9 ribonucleoprotein complexes into zygotes.",
+      "metadata": {
+        "Number of Zygotes": "127",
+        "Injection Method": "Unspecified"
+      }
+    },
+    "S2.2": {
+      "label": "In vitro Culture",
+      "type": "Experimental",
+      "description": "Culture of injected zygotes to the 2-cell stage.",
+      "metadata": {
+        "Culture Medium": "Unspecified",
+        "Culture Duration": "24 hours"
+      }
+    },
+    "S3.1": {
+      "label": "Embryo Transfer",
+      "type": "Experimental",
+      "description": "Transfer of 2-cell stage embryos into pseudopregnant female mice.",
+      "metadata": {
+        "Number of Embryos Transferred": "92",
+        "Recipient Strain": "Unspecified"
+      }
+    },
+    "S3.2": {
+      "label": "Offspring Weaning",
+      "type": "Experimental",
+      "description": "Weaning of pups to assess survival rate.",
+      "metadata": {
+        "Number of Pups Born": "3",
+        "Number of Pups Weaned": "3"
+      }
+    },
+    "S4.1": {
+      "label": "Genomic Sequencing",
+      "type": "Experimental",
+      "description": "Genomic sequencing to confirm biallelic knockout of the nonagouti gene.",
+      "metadata": {
+        "Sequencing Method": "Unspecified"
+      }
+    },
+    "S4.2": {
+      "label": "Phenotype Screening (SHIRPA)",
+      "type": "Experimental",
+      "description": "Comprehensive phenotype screening using a modified SHIRPA protocol.",
+      "metadata": {
+        "Protocol": "Modified SHIRPA",
+        "Age": "8 weeks"
+      }
+    },
+    "S4.3": {
+      "label": "Serum Biochemical Analysis",
+      "type": "Analytical",
+      "description": "Analysis of serum biochemical parameters at 19 weeks of age.",
+      "metadata": {
+        "Parameters": "HDL cholesterol, others"
+      }
+    },
+    "S5.1": {
+      "label": "Home Cage Activity Test",
+      "type": "Experimental",
+      "description": "Measurement of activity levels in a home cage environment.",
+      "metadata": {
+        "Duration": "24h",
+        "Measurement": "Activity counts per hour"
+      }
+    },
+    "S5.2": {
+      "label": "Stay-on-Hand Test",
+      "type": "Experimental",
+      "description": "Assessment of tameness by measuring the duration mice remain on a human hand.",
+      "metadata": {
+        "Duration": "6 & 8 weeks",
+        "Measurement": "Time on hand (seconds)"
+      }
+    },
+    "S6.1": {
+      "label": "Microarray Analysis",
+      "type": "Analytical",
+      "description": "Gene expression analysis of midbrain samples using microarrays.",
+      "metadata": {
+        "Platform": "Unspecified",
+        "Number of Probes": "34469"
+      }
+    },
+    "S6.2": {
+      "label": "RT-qPCR",
+      "type": "Analytical",
+      "description": "Quantitative reverse transcription PCR (RT-qPCR) to validate microarray results.",
+      "metadata": {
+        "Target Gene": "Slc6a3",
+        "Primers": "Unspecified"
+      }
+    },
+    "S6.3": {
+      "label": "Chromatin Immunoprecipitation (ChIP)",
+      "type": "Experimental",
+      "description": "ChIP analysis to assess histone modifications on the Slc6a3 gene.",
+      "metadata": {
+        "Antibodies": "H3K27me3, H3K4me3, H3K9me3"
+      }
+    },
+    "S6.4": {
+      "label": "Dopamine Quantification",
+      "type": "Analytical",
+      "description": "Measurement of dopamine concentration in midbrain tissues.",
+      "metadata": {
+        "Method": "Unspecified"
+      }
+    }
+  },
+  "stepEdges": [
+    {
+      "from": "S1.1",
+      "to": "S1.2",
+      "relation": "preceded_by",
+      "description": "sgRNAs are designed before in vitro transfection",
+      "label": "Sequential"
+    },
+    {
+      "from": "S2.1",
+      "to": "S2.2",
+      "relation": "preceded_by",
+      "description": "Zygotes are injected before culture",
+      "label": "Sequential"
+    },
+    {
+      "from": "S3.1",
+      "to": "S3.2",
+      "relation": "preceded_by",
+      "description": "Embryos are transferred before weaning",
+      "label": "Sequential"
+    },
+    {
+      "from": "S4.1",
+      "to": "S4.2",
+      "relation": "preceded_by",
+      "description": "Genotyping precedes phenotypic screening",
+      "label": "Sequential"
+    },
+    {
+      "from": "S4.2",
+      "to": "S4.3",
+      "relation": "preceded_by",
+      "description": "SHIRPA precedes serum analysis",
+      "label": "Sequential"
+    },
+    {
+      "from": "S5.1",
+      "to": "S5.2",
+      "relation": "parallel_with",
+      "description": "Home cage activity and stay-on-hand tests conducted concurrently",
+      "label": "Parallel"
+    },
+    {
+      "from": "S6.1",
+      "to": "S6.2",
+      "relation": "preceded_by",
+      "description": "Microarray analysis is followed by RT-qPCR validation",
+      "label": "Sequential"
+    },
+    {
+      "from": "S6.2",
+      "to": "S6.3",
+      "relation": "parallel_with",
+      "description": "RT-qPCR and ChIP are conducted concurrently",
+      "label": "Parallel"
+    },
+    {
+      "from": "S6.3",
+      "to": "S6.4",
+      "relation": "parallel_with",
+      "description": "ChIP and Dopamine quantification are conducted concurrently",
+      "label": "Parallel"
+    }
+  ]
+}
+```
+
+2025-06-27 12:14:09,082 - app.services.gemini_service - INFO - ================================================================================
+2025-06-27 12:14:09,083 - app.services.gemini_service - INFO - 🧹 CLEANED RESPONSE TEXT LENGTH: 7945
+2025-06-27 12:14:09,083 - app.services.gemini_service - INFO - ✂️ REMOVED MARKDOWN CODE BLOCKS
+2025-06-27 12:14:09,083 - app.services.gemini_service - INFO - 📝 FINAL TEXT BEFORE JSON PARSE:
+2025-06-27 12:14:09,083 - app.services.gemini_service - INFO - First 500 chars: {
+  "stages": {
+    "S1": {
+      "label": "CRISPR/Cas9 Construct Design and Validation",
+      "description": "Design and validation of CRISPR/Cas9 constructs targeting the nonagouti (a) gene in MSM/Ms mice."
+    },
+    "S2": {
+      "label": "Zygote Injection and Embryo Culture",
+      "description": "Microinjection of CRISPR/Cas9 constructs into MSM/Ms mouse zygotes followed by in vitro culture."
+    },
+    "S3": {
+      "label": "Embryo Transfer and Offspring Generation",
+      "description"...
+2025-06-27 12:14:09,083 - app.services.gemini_service - INFO - ✅ JSON PARSING SUCCESSFUL
+2025-06-27 12:14:09,083 - app.services.gemini_service - INFO - 🎯 PARSED WORKFLOW JSON:
+2025-06-27 12:14:09,083 - app.services.gemini_service - INFO - ================================================================================
+2025-06-27 12:14:09,084 - app.services.gemini_service - INFO - {
+  "success": true,
+  "workflow": {
+    "stages": {
+      "S1": {
+        "label": "CRISPR/Cas9 Construct Design and Validation",
+        "description": "Design and validation of CRISPR/Cas9 constructs targeting the nonagouti (a) gene in MSM/Ms mice."
+      },
+      "S2": {
+        "label": "Zygote Injection and Embryo Culture",
+        "description": "Microinjection of CRISPR/Cas9 constructs into MSM/Ms mouse zygotes followed by in vitro culture."
+      },
+      "S3": {
+        "label": "Embryo Transfer and Offspring Generation",
+        "description": "Transfer of cultured embryos into pseudopregnant recipient mice and subsequent offspring weaning."
+      },
+      "S4": {
+        "label": "Genotyping and Phenotypic Characterization",
+        "description": "Genotyping of offspring to identify homozygous knockout mice, followed by a comprehensive phenotypic analysis."
+      },
+      "S5": {
+        "label": "Behavioral Analysis",
+        "description": "Behavioral testing of homozygous knockout mice to assess changes in activity and tameness."
+      },
+      "S6": {
+        "label": "Molecular Analysis of Midbrain",
+        "description": "Gene expression and biochemical analysis of the midbrain to explore the molecular basis of observed behavioral changes."
+      }
+    },
+    "stageEdges": [
+      {
+        "from": "S1",
+        "to": "S2",
+        "label": "Construct Validation",
+        "description": "Validated CRISPR constructs are used for zygote injection."
+      },
+      {
+        "from": "S2",
+        "to": "S3",
+        "label": "Embryo Development",
+        "description": "Successfully cultured embryos are transferred for implantation."
+      },
+      {
+        "from": "S3",
+        "to": "S4",
+        "label": "Offspring Born",
+        "description": "Weaned offspring are genotyped and phenotypically characterized."
+      },
+      {
+        "from": "S4",
+        "to": "S5",
+        "label": "Phenotypic Screening",
+        "description": "Phenotypically characterized mice undergo behavioral assessments."
+      },
+      {
+        "from": "S5",
+        "to": "S6",
+        "label": "Behavioral Changes",
+        "description": "Significant behavioral changes prompt molecular analysis of the midbrain."
+      }
+    ],
+    "steps": {
+      "S1.1": {
+        "label": "sgRNA Design",
+        "type": "Computational",
+        "description": "Design of single guide RNAs (sgRNAs) targeting the nonagouti gene.",
+        "metadata": {
+          "Target Gene": "nonagouti (a)",
+          "Software": "Unspecified"
+        }
+      },
+      "S1.2": {
+        "label": "In vitro Transfection",
+        "type": "Experimental",
+        "description": "In vitro transfection of HEK293 cells with sgRNAs to assess efficiency.",
+        "metadata": {
+          "Cell Line": "HEK293",
+          "Transfection Method": "Unspecified"
+        }
+      },
+      "S2.1": {
+        "label": "Zygote Microinjection",
+        "type": "Experimental",
+        "description": "Microinjection of CRISPR/Cas9 ribonucleoprotein complexes into zygotes.",
+        "metadata": {
+          "Number of Zygotes": "127",
+          "Injection Method": "Unspecified"
+        }
+      },
+      "S2.2": {
+        "label": "In vitro Culture",
+        "type": "Experimental",
+        "description": "Culture of injected zygotes to the 2-cell stage.",
+        "metadata": {
+          "Culture Medium": "Unspecified",
+          "Culture Duration": "24 hours"
+        }
+      },
+      "S3.1": {
+        "label": "Embryo Transfer",
+        "type": "Experimental",
+        "description": "Transfer of 2-cell stage embryos into pseudopregnant female mice.",
+        "metadata": {
+          "Number of Embryos Transferred": "92",
+          "Recipient Strain": "Unspecified"
+        }
+      },
+      "S3.2": {
+        "label": "Offspring Weaning",
+        "type": "Experimental",
+        "description": "Weaning of pups to assess survival rate.",
+        "metadata": {
+          "Number of Pups Born": "3",
+          "Number of Pups Weaned": "3"
+        }
+      },
+      "S4.1": {
+        "label": "Genomic Sequencing",
+        "type": "Experimental",
+        "description": "Genomic sequencing to confirm biallelic knockout of the nonagouti gene.",
+        "metadata": {
+          "Sequencing Method": "Unspecified"
+        }
+      },
+      "S4.2": {
+        "label": "Phenotype Screening (SHIRPA)",
+        "type": "Experimental",
+        "description": "Comprehensive phenotype screening using a modified SHIRPA protocol.",
+        "metadata": {
+          "Protocol": "Modified SHIRPA",
+          "Age": "8 weeks"
+        }
+      },
+      "S4.3": {
+        "label": "Serum Biochemical Analysis",
+        "type": "Analytical",
+        "description": "Analysis of serum biochemical parameters at 19 weeks of age.",
+        "metadata": {
+          "Parameters": "HDL cholesterol, others"
+        }
+      },
+      "S5.1": {
+        "label": "Home Cage Activity Test",
+        "type": "Experimental",
+        "description": "Measurement of activity levels in a home cage environment.",
+        "metadata": {
+          "Duration": "24h",
+          "Measurement": "Activity counts per hour"
+        }
+      },
+      "S5.2": {
+        "label": "Stay-on-Hand Test",
+        "type": "Experimental",
+        "description": "Assessment of tameness by measuring the duration mice remain on a human hand.",
+        "metadata": {
+          "Duration": "6 & 8 weeks",
+          "Measurement": "Time on hand (seconds)"
+        }
+      },
+      "S6.1": {
+        "label": "Microarray Analysis",
+        "type": "Analytical",
+        "description": "Gene expression analysis of midbrain samples using microarrays.",
+        "metadata": {
+          "Platform": "Unspecified",
+          "Number of Probes": "34469"
+        }
+      },
+      "S6.2": {
+        "label": "RT-qPCR",
+        "type": "Analytical",
+        "description": "Quantitative reverse transcription PCR (RT-qPCR) to validate microarray results.",
+        "metadata": {
+          "Target Gene": "Slc6a3",
+          "Primers": "Unspecified"
+        }
+      },
+      "S6.3": {
+        "label": "Chromatin Immunoprecipitation (ChIP)",
+        "type": "Experimental",
+        "description": "ChIP analysis to assess histone modifications on the Slc6a3 gene.",
+        "metadata": {
+          "Antibodies": "H3K27me3, H3K4me3, H3K9me3"
+        }
+      },
+      "S6.4": {
+        "label": "Dopamine Quantification",
+        "type": "Analytical",
+        "description": "Measurement of dopamine concentration in midbrain tissues.",
+        "metadata": {
+          "Method": "Unspecified"
+        }
+      }
+    },
+    "stepEdges": [
+      {
+        "from": "S1.1",
+        "to": "S1.2",
+        "relation": "preceded_by",
+        "description": "sgRNAs are designed before in vitro transfection",
+        "label": "Sequential"
+      },
+      {
+        "from": "S2.1",
+        "to": "S2.2",
+        "relation": "preceded_by",
+        "description": "Zygotes are injected before culture",
+        "label": "Sequential"
+      },
+      {
+        "from": "S3.1",
+        "to": "S3.2",
+        "relation": "preceded_by",
+        "description": "Embryos are transferred before weaning",
+        "label": "Sequential"
+      },
+      {
+        "from": "S4.1",
+        "to": "S4.2",
+        "relation": "preceded_by",
+        "description": "Genotyping precedes phenotypic screening",
+        "label": "Sequential"
+      },
+      {
+        "from": "S4.2",
+        "to": "S4.3",
+        "relation": "preceded_by",
+        "description": "SHIRPA precedes serum analysis",
+        "label": "Sequential"
+      },
+      {
+        "from": "S5.1",
+        "to": "S5.2",
+        "relation": "parallel_with",
+        "description": "Home cage activity and stay-on-hand tests conducted concurrently",
+        "label": "Parallel"
+      },
+      {
+        "from": "S6.1",
+        "to": "S6.2",
+        "relation": "preceded_by",
+        "description": "Microarray analysis is followed by RT-qPCR validation",
+        "label": "Sequential"
+      },
+      {
+        "from": "S6.2",
+        "to": "S6.3",
+        "relation": "parallel_with",
+        "description": "RT-qPCR and ChIP are conducted concurrently",
+        "label": "Parallel"
+      },
+      {
+        "from": "S6.3",
+        "to": "S6.4",
+        "relation": "parallel_with",
+        "description": "ChIP and Dopamine quantification are conducted concurrently",
+        "label": "Parallel"
+      }
+    ]
+  }
+}
+2025-06-27 12:14:09,084 - app.services.gemini_service - INFO - ================================================================================
+2025-06-27 12:14:09,084 - app.services.workflow_generator - INFO - Successfully generated workflow from PDF
+{
+  "stages": {
+    "S1": {
+      "label": "CRISPR/Cas9 Construct Design and Validation",
+      "description": "Design and validation of CRISPR/Cas9 constructs targeting the nonagouti (a) gene in MSM/Ms mice."
+    },
+    "S2": {
+      "label": "Zygote Injection and Embryo Culture",
+      "description": "Microinjection of CRISPR/Cas9 constructs into MSM/Ms mouse zygotes followed by in vitro culture."
+    },
+    "S3": {
+      "label": "Embryo Transfer and Offspring Generation",
+      "description": "Transfer of cultured embryos into pseudopregnant recipient mice and subsequent offspring weaning."
+    },
+    "S4": {
+      "label": "Genotyping and Phenotypic Characterization",
+      "description": "Genotyping of offspring to identify homozygous knockout mice, followed by a comprehensive phenotypic analysis."
+    },
+    "S5": {
+      "label": "Behavioral Analysis",
+      "description": "Behavioral testing of homozygous knockout mice to assess changes in activity and tameness."
+    },
+    "S6": {
+      "label": "Molecular Analysis of Midbrain",
+      "description": "Gene expression and biochemical analysis of the midbrain to explore the molecular basis of observed behavioral changes."
+    }
+  },
+  "stageEdges": [
+    {
+      "from": "S1",
+      "to": "S2",
+      "label": "Construct Validation",
+      "description": "Validated CRISPR constructs are used for zygote injection."
+    },
+    {
+      "from": "S2",
+      "to": "S3",
+      "label": "Embryo Development",
+      "description": "Successfully cultured embryos are transferred for implantation."
+    },
+    {
+      "from": "S3",
+      "to": "S4",
+      "label": "Offspring Born",
+      "description": "Weaned offspring are genotyped and phenotypically characterized."
+    },
+    {
+      "from": "S4",
+      "to": "S5",
+      "label": "Phenotypic Screening",
+      "description": "Phenotypically characterized mice undergo behavioral assessments."
+    },
+    {
+      "from": "S5",
+      "to": "S6",
+      "label": "Behavioral Changes",
+      "description": "Significant behavioral changes prompt molecular analysis of the midbrain."
+    }
+  ],
+  "steps": {
+    "S1.1": {
+      "label": "sgRNA Design",
+      "type": "Computational",
+      "description": "Design of single guide RNAs (sgRNAs) targeting the nonagouti gene.",
+      "metadata": {
+        "Target Gene": "nonagouti (a)",
+        "Software": "Unspecified"
+      }
+    },
+    "S1.2": {
+      "label": "In vitro Transfection",
+      "type": "Experimental",
+      "description": "In vitro transfection of HEK293 cells with sgRNAs to assess efficiency.",
+      "metadata": {
+        "Cell Line": "HEK293",
+        "Transfection Method": "Unspecified"
+      }
+    },
+    "S2.1": {
+      "label": "Zygote Microinjection",
+      "type": "Experimental",
+      "description": "Microinjection of CRISPR/Cas9 ribonucleoprotein complexes into zygotes.",
+      "metadata": {
+        "Number of Zygotes": "127",
+        "Injection Method": "Unspecified"
+      }
+    },
+    "S2.2": {
+      "label": "In vitro Culture",
+      "type": "Experimental",
+      "description": "Culture of injected zygotes to the 2-cell stage.",
+      "metadata": {
+        "Culture Medium": "Unspecified",
+        "Culture Duration": "24 hours"
+      }
+    },
+    "S3.1": {
+      "label": "Embryo Transfer",
+      "type": "Experimental",
+      "description": "Transfer of 2-cell stage embryos into pseudopregnant female mice.",
+      "metadata": {
+        "Number of Embryos Transferred": "92",
+        "Recipient Strain": "Unspecified"
+      }
+    },
+    "S3.2": {
+      "label": "Offspring Weaning",
+      "type": "Experimental",
+      "description": "Weaning of pups to assess survival rate.",
+      "metadata": {
+        "Number of Pups Born": "3",
+        "Number of Pups Weaned": "3"
+      }
+    },
+    "S4.1": {
+      "label": "Genomic Sequencing",
+      "type": "Experimental",
+      "description": "Genomic sequencing to confirm biallelic knockout of the nonagouti gene.",
+      "metadata": {
+        "Sequencing Method": "Unspecified"
+      }
+    },
+    "S4.2": {
+      "label": "Phenotype Screening (SHIRPA)",
+      "type": "Experimental",
+      "description": "Comprehensive phenotype screening using a modified SHIRPA protocol.",
+      "metadata": {
+        "Protocol": "Modified SHIRPA",
+        "Age": "8 weeks"
+      }
+    },
+    "S4.3": {
+      "label": "Serum Biochemical Analysis",
+      "type": "Analytical",
+      "description": "Analysis of serum biochemical parameters at 19 weeks of age.",
+      "metadata": {
+        "Parameters": "HDL cholesterol, others"
+      }
+    },
+    "S5.1": {
+      "label": "Home Cage Activity Test",
+      "type": "Experimental",
+      "description": "Measurement of activity levels in a home cage environment.",
+      "metadata": {
+        "Duration": "24h",
+        "Measurement": "Activity counts per hour"
+      }
+    },
+    "S5.2": {
+      "label": "Stay-on-Hand Test",
+      "type": "Experimental",
+      "description": "Assessment of tameness by measuring the duration mice remain on a human hand.",
+      "metadata": {
+        "Duration": "6 & 8 weeks",
+        "Measurement": "Time on hand (seconds)"
+      }
+    },
+    "S6.1": {
+      "label": "Microarray Analysis",
+      "type": "Analytical",
+      "description": "Gene expression analysis of midbrain samples using microarrays.",
+      "metadata": {
+        "Platform": "Unspecified",
+        "Number of Probes": "34469"
+      }
+    },
+    "S6.2": {
+      "label": "RT-qPCR",
+      "type": "Analytical",
+      "description": "Quantitative reverse transcription PCR (RT-qPCR) to validate microarray results.",
+      "metadata": {
+        "Target Gene": "Slc6a3",
+        "Primers": "Unspecified"
+      }
+    },
+    "S6.3": {
+      "label": "Chromatin Immunoprecipitation (ChIP)",
+      "type": "Experimental",
+      "description": "ChIP analysis to assess histone modifications on the Slc6a3 gene.",
+      "metadata": {
+        "Antibodies": "H3K27me3, H3K4me3, H3K9me3"
+      }
+    },
+    "S6.4": {
+      "label": "Dopamine Quantification",
+      "type": "Analytical",
+      "description": "Measurement of dopamine concentration in midbrain tissues.",
+      "metadata": {
+        "Method": "Unspecified"
+      }
+    }
+  },
+  "stepEdges": [
+    {
+      "from": "S1.1",
+      "to": "S1.2",
+      "relation": "preceded_by",
+      "description": "sgRNAs are designed before in vitro transfection",
+      "label": "Sequential"
+    },
+    {
+      "from": "S2.1",
+      "to": "S2.2",
+      "relation": "preceded_by",
+      "description": "Zygotes are injected before culture",
+      "label": "Sequential"
+    },
+    {
+      "from": "S3.1",
+      "to": "S3.2",
+      "relation": "preceded_by",
+      "description": "Embryos are transferred before weaning",
+      "label": "Sequential"
+    },
+    {
+      "from": "S4.1",
+      "to": "S4.2",
+      "relation": "preceded_by",
+      "description": "Genotyping precedes phenotypic screening",
+      "label": "Sequential"
+    },
+    {
+      "from": "S4.2",
+      "to": "S4.3",
+      "relation": "preceded_by",
+      "description": "SHIRPA precedes serum analysis",
+      "label": "Sequential"
+    },
+    {
+      "from": "S5.1",
+      "to": "S5.2",
+      "relation": "parallel_with",
+      "description": "Home cage activity and stay-on-hand tests conducted concurrently",
+      "label": "Parallel"
+    },
+    {
+      "from": "S6.1",
+      "to": "S6.2",
+      "relation": "preceded_by",
+      "description": "Microarray analysis is followed by RT-qPCR validation",
+      "label": "Sequential"
+    },
+    {
+      "from": "S6.2",
+      "to": "S6.3",
+      "relation": "parallel_with",
+      "description": "RT-qPCR and ChIP are conducted concurrently",
+      "label": "Parallel"
+    },
+    {
+      "from": "S6.3",
+      "to": "S6.4",
+      "relation": "parallel_with",
+      "description": "ChIP and Dopamine quantification are conducted concurrently",
+      "label": "Parallel"
+    }
+  ]
+}
+INFO:     127.0.0.1:65383 - "POST /api/upload HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'app/services/gemini_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2025-06-27 12:38:35,208 - app.main - INFO - Shutting down Workflow Generator API
+INFO:     Application shutdown complete.
+INFO:     Finished server process [32846]
+WARNING:  WatchFiles detected changes in 'app/services/gemini_service.py'. Reloading...
+INFO:     Started server process [34002]
+INFO:     Waiting for application startup.
+2025-06-27 12:38:38,479 - app.main - INFO - Starting Workflow Generator API
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'app/services/gemini_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2025-06-27 12:41:02,049 - app.main - INFO - Shutting down Workflow Generator API
+INFO:     Application shutdown complete.
+INFO:     Finished server process [34002]
+INFO:     Started server process [34233]
+INFO:     Waiting for application startup.
+2025-06-27 12:41:02,953 - app.main - INFO - Starting Workflow Generator API
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'app/services/enrichment_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2025-06-27 12:43:23,387 - app.main - INFO - Shutting down Workflow Generator API
+INFO:     Application shutdown complete.
+INFO:     Finished server process [34233]
+INFO:     Started server process [34366]
+INFO:     Waiting for application startup.
+2025-06-27 12:43:24,318 - app.main - INFO - Starting Workflow Generator API
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'app/services/enrichment_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2025-06-27 12:43:24,731 - app.main - INFO - Shutting down Workflow Generator API
+INFO:     Application shutdown complete.
+INFO:     Finished server process [34366]
+WARNING:  WatchFiles detected changes in 'app/services/enrichment_service.py'. Reloading...
+INFO:     Started server process [34379]
+INFO:     Waiting for application startup.
+2025-06-27 12:43:25,567 - app.main - INFO - Starting Workflow Generator API
+INFO:     Application startup complete.
+INFO:     127.0.0.1:50827 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50897 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50915 - "OPTIONS /api/upload HTTP/1.1" 405 Method Not Allowed
+INFO:     127.0.0.1:50925 - "GET /docs HTTP/1.1" 200 OK
+2025-06-27 12:47:22,493 - app.api.upload - INFO - Processing PDF: srep42476.pdf (3197437 bytes)
+2025-06-27 12:47:22,493 - app.services.workflow_generator - INFO - Extracting text from PDF: srep42476.pdf
+2025-06-27 12:47:22,495 - app.services.pdf_parser - INFO - Trying pymupdf4llm for /var/folders/h5/0dkg2lpd1zqc9kw115p9m4sm0000gn/T/tmp1kso3sse.pdf
+2025-06-27 12:47:24,148 - app.services.pdf_parser - INFO - ✅ pymupdf4llm extracted 44313 characters
+2025-06-27 12:47:24,148 - app.services.workflow_generator - INFO - Generating workflow from extracted text (44313 chars)
+2025-06-27 12:47:46,553 - app.services.gemini_service - INFO - 🔍 RAW GEMINI RESPONSE:
+2025-06-27 12:47:46,554 - app.services.gemini_service - INFO - ================================================================================
+2025-06-27 12:47:46,554 - app.services.gemini_service - INFO - ```xml
+<thinking>
+The plan is to break down the research paper's methodology into stages and steps.  Each step will have a unique ID (e.g., S1.1, S1.2, S2.1 etc.),  a label describing its function, an objective, rationale (if provided), type (e.g., "in-vitro experiment", "animal procedure", "data analysis"), inputs (referencing outputs from previous steps), outputs, references (figures, tables etc), and details about equipment, reagents, software, and parameters.  Special attention will be paid to capturing all numerical values and specific product information.  The workflow will be structured as a JSON object as per the provided schema.  Missing information will be represented with "null" or "Not Specified".
+</thinking>
+```
+```json
+{
+  "paper_title": "CRISPR/Cas9-mediated genome editing in wild-derived mice: generation of tamed wild-derived strains by mutation of the a (nonagouti) gene",
+  "citation": {
+    "text": "Hirose, M. et al. CRISPR/Cas9-mediated genome editing in wild-derived mice: generation of tamed wild-derived strains by mutation of the a (nonagouti) gene. Sci. Rep. 7, 42476; doi: 10.1038/srep42476 (2017).",
+    "doi_url": "https://doi.org/10.1038/srep42476"
+  },
+  "workflow": [
+    {
+      "stage_id": "S1",
+      "stage_label": "Generation of nonagouti KO mice",
+      "stage_description": "Generating knockout mice of the nonagouti gene using CRISPR/Cas9 system and assisted reproductive technologies.",
+      "steps": [
+        {
+          "step_id": "S1.1",
+          "step_label": "sgRNA Design and Efficiency Evaluation",
+          "objective": "Design and evaluate the efficiency of three sgRNA sequences targeting the nonagouti (a) gene in MSM/Ms mice.",
+          "rationale": "To ensure effective gene knockout via CRISPR/Cas9.",
+          "type": "in-vitro experiment",
+          "inputs": [],
+          "outputs": ["validated sgRNA sequences"],
+          "references": ["Supplementary Fig. S1", "Supplementary Table S4", "Supplementary Table S5"],
+          "details": {
+            "equipment": [
+              { "item": "Fluorescence microscope", "model": "BZ-9000", "manufacturer": "Keyence" },
+              { "item": "Image analysis system", "model": "BZ-II Analyzer", "manufacturer": "Keyence" },
+              { "item": "Electroporator", "model": "NEPA21", "manufacturer": "Nepa Gene Co., Ltd." }
+            ],
+            "reagents": [
+              { "item": "pCAG-EGxxFP plasmid", "concentration": "10 μg", "supplier": "Not Specified" },
+              { "item": "pX330 plasmid", "concentration": "10 μg", "supplier": "Addgene (http://www.addgene.org/42230/)" }
+            ],
+            "software": [ { "name": "GeneSpring GX", "version": "13.1.1" } ],
+            "parameters": {
+              "PCR_cycles": "35 cycles of 94 °C for 30 s, 60 °C for 30 s, and 72 °C for 30 s"
+            }
+          }
+        },
+        {
+          "step_id": "S1.2",
+          "step_label": "CRISPR/Cas9 mediated gene editing in zygotes",
+          "objective": "Generate nonagouti gene knockout mice using CRISPR/Cas9.",
+          "rationale": "To create a mouse model with a targeted gene mutation.",
+          "type": "animal procedure",
+          "inputs": ["validated sgRNA sequences", "from_step:S1.1"],
+          "outputs": ["injected zygotes", "2-cell stage embryos", "transferred embryos", "born pups"],
+          "references": ["Table 1", "Fig. 1a"],
+          "details": {
+            "equipment": [],
+            "reagents": [
+              { "item": "KSOM medium", "concentration": "Not Specified", "supplier": "Not Specified" },
+              { "item": "Plasmids", "concentration": "5 ng/μl", "supplier": "Not Specified" },
+              { "item": "Cyclosporin A", "concentration": "1 or 2 mg/kg", "supplier": "Sigma-Aldrich" }
+            ],
+            "software": [],
+            "parameters": {
+              "zygotes_injected": "127",
+              "2_cell_stage_embryos": "92 (72%)",
+              "embryos_transferred": "92",
+              "pups_born": "3"
+            }
+          }
+        },
+        {
+          "step_id": "S1.3",
+          "step_label": "Genotyping and allele identification",
+          "objective": "Genotype the offspring and determine the specific alleles of the nonagouti gene.",
+          "rationale": "To confirm successful gene knockout and identify the resulting mutations.",
+          "type": "molecular analysis",
+          "inputs": ["born pups", "from_step:S1.2"],
+          "outputs": ["genotyped mice", "allele sequences"],
+          "references": ["Fig. 1b", "Fig. 1c", "Fig. 1d", "Supplementary Fig. S2", "Supplementary Fig. S3", "Supplementary Table S5"],
+          "details": {
+            "equipment": [],
+            "reagents": [
+              { "item": "pT7 Blue T-vector", "concentration": "Not Specified", "supplier": "Merck Millipore" }
+            ],
+            "software": [],
+            "parameters": {
+              "alleles_identified": "A, B, C, D"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "stage_id": "S2",
+      "stage_label": "Phenotypic Analysis",
+      "stage_description": "Analyzing the physiological, morphological and behavioral phenotypes of the generated KO mice.",
+      "steps": [
+        {
+          "step_id": "S2.1",
+          "step_label": "Physiological and Morphological Analysis",
+          "objective": "Assess physiological and morphological parameters of the KO mice.",
+          "rationale": "To determine any potential side effects of the gene knockout.",
+          "type": "animal procedure",
+          "inputs": ["genotyped mice", "from_step:S1.3"],
+          "outputs": ["physiological data", "morphological data"],
+          "references": ["Supplementary Fig. S4", "Supplementary Fig. S5", "Supplementary Fig. S6"],
+          "details": {
+            "equipment": [],
+            "reagents": [],
+            "software": [],
+            "parameters": {
+              "age_at_modified_SHIRPA": "8 weeks",
+              "age_at_serum_analysis": "19 weeks",
+              "age_at_euthanasia": "26 weeks"
+            }
+          }
+        },
+        {
+          "step_id": "S2.2",
+          "step_label": "Behavioral Analysis",
+          "objective": "Assess behavioral changes in the KO mice.",
+          "rationale": "To investigate potential effects of the nonagouti gene on behavior.",
+          "type": "behavioral test",
+          "inputs": ["genotyped mice", "from_step:S1.3"],
+          "outputs": ["behavioral data"],
+          "references": ["Fig. 2", "Fig. 3a", "Fig. 3b", "Fig. 3c", "Supplementary Movies S1 and S2"],
+          "details": {
+            "equipment": [],
+            "reagents": [],
+            "software": [],
+            "parameters": {
+              "age_at_light_dark_transition_test": "8 weeks",
+              "age_at_open_field_test_1": "9 weeks",
+              "age_at_open_field_test_2": "10 weeks",
+              "age_at_home_cage_activity_test": "10-11 weeks",
+              "age_at_tameness_test_1": "6 weeks",
+              "age_at_tameness_test_2": "8 weeks"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "stage_id": "S3",
+      "stage_label": "Molecular Analysis of Midbrain",
+      "stage_description": "Investigating the molecular mechanisms underlying the observed behavioral changes in KO mice.",
+      "steps": [
+        {
+          "step_id": "S3.1",
+          "step_label": "Microarray analysis",
+          "objective": "Identify differentially expressed genes in the midbrain of KO mice compared to WT mice.",
+          "rationale": "To explore potential molecular mechanisms responsible for observed behavioural changes.",
+          "type": "gene expression analysis",
+          "inputs": ["genotyped mice", "from_step:S1.3"],
+          "outputs": ["gene expression data", "differentially expressed genes"],
+          "references": ["Fig. 4a", "Supplementary Table S1", "Supplementary Table S2", "Supplementary Table S3", "Supplementary Fig. S7", "GSE84840"],
+          "details": {
+            "equipment": [
+              { "item": "DNA microarray scanner", "manufacturer": "Agilent Technologies" }
+            ],
+            "reagents": [
+              { "item": "Low-Input QuickAmp Labeling Kit", "supplier": "Agilent Technologies" },
+              { "item": "SurePrint G3 Mouse Gene Expression v2 8 × 60 K Microarray Kits", "supplier": "Agilent Technologies" },
+              { "item": "Trizol", "supplier": "Thermo Fisher Scientific" }
+            ],
+            "software": [ { "name": "Feature Extraction", "version": null }, { "name": "Gene Spring GX", "version": "13.1.1" } ],
+            "parameters": {
+              "probes_detected": "34,469",
+              "fold_change_threshold": "2"
+            }
+          }
+        },
+        {
+          "step_id": "S3.2",
+          "step_label": "RT-qPCR validation",
+          "objective": "Validate the microarray results by RT-qPCR.",
+          "rationale": "To confirm the differential expression of target genes.",
+          "type": "gene expression analysis",
+          "inputs": ["gene expression data", "from_step:S3.1"],
+          "outputs": ["validated gene expression data"],
+          "references": ["Fig. 4b", "Supplementary Table S5"],
+          "details": {
+            "equipment": [ { "item": "7900HT Sequence Detector system", "manufacturer": "Applied Biosystems" } ],
+            "reagents": [ { "item": "SuperScript III First-Strand Synthesis System", "supplier": "Invitrogen" } ],
+            "software": [],
+            "parameters": {}
+          }
+        },
+        {
+          "step_id": "S3.3",
+          "step_label": "ChIP analysis",
+          "objective": "Analyze histone modifications on the Slc6a3 gene.",
+          "rationale": "To investigate epigenetic regulation of Slc6a3.",
+          "type": "epigenetic analysis",
+          "inputs": ["genotyped mice", "from_step:S1.3"],
+          "outputs": ["ChIP data", "histone modification levels"],
+          "references": ["Fig. 4c", "Supplementary Table S5"],
+          "details": {
+            "equipment": [ { "item": "Covaris S220 instrument", "manufacturer": "Covaris" } ],
+            "reagents": [ { "item": "truChIP Tissue Chromatin Shearing Reagent kits", "supplier": "Covaris" }, { "item": "Dynabeads Protein G", "supplier": "Invitrogen" } ],
+            "software": [],
+            "parameters": {}
+          }
+        },
+        {
+          "step_id": "S3.4",
+          "step_label": "Dopamine Measurement",
+          "objective": "Measure dopamine levels in the midbrain.",
+          "rationale": "To assess potential changes in dopamine neurotransmission.",
+          "type": "biochemical analysis",
+          "inputs": ["genotyped mice", "from_step:S1.3"],
+          "outputs": ["dopamine levels"],
+          "references": ["Fig. 4d"],
+          "details": {
+            "equipment": [
+              { "item": "HPLC system", "model": "EP-300", "manufacturer": "Eicom" },
+              { "item": "Electrochemical detector", "model": "ECD-300", "manufacturer": "Eicom" },
+              { "item": "PowerChrom system", "manufacturer": "eDAQ" }
+            ],
+            "reagents": [ { "item": "isoproterenol", "concentration": "150 ng/tissue", "supplier": "Not Specified" } ],
+            "software": [],
+            "parameters": {}
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+
+2025-06-27 12:47:46,554 - app.services.gemini_service - INFO - ================================================================================
+2025-06-27 12:47:46,554 - app.services.gemini_service - INFO - 🧹 CLEANED RESPONSE TEXT LENGTH: 11356
+2025-06-27 12:47:46,554 - app.services.gemini_service - INFO - ✂️ REMOVED MARKDOWN CODE BLOCKS
+2025-06-27 12:47:46,554 - app.services.gemini_service - INFO - 📝 FINAL TEXT BEFORE JSON PARSE:
+2025-06-27 12:47:46,554 - app.services.gemini_service - INFO - First 500 chars: <thinking>
+The plan is to break down the research paper's methodology into stages and steps.  Each step will have a unique ID (e.g., S1.1, S1.2, S2.1 etc.),  a label describing its function, an objective, rationale (if provided), type (e.g., "in-vitro experiment", "animal procedure", "data analysis"), inputs (referencing outputs from previous steps), outputs, references (figures, tables etc), and details about equipment, reagents, software, and parameters.  Special attention will be paid to capt...
+2025-06-27 12:47:46,555 - app.services.gemini_service - ERROR - Invalid JSON response from Gemini: Expecting value: line 1 column 1 (char 0)
+2025-06-27 12:47:46,555 - app.services.gemini_service - INFO - 🎯 Using sample workflow (no API key or AI failed)
+2025-06-27 12:47:46,555 - app.services.gemini_service - INFO - 🎯 PARSED WORKFLOW JSON:
+2025-06-27 12:47:46,556 - app.services.gemini_service - INFO - ================================================================================
+2025-06-27 12:47:46,556 - app.services.gemini_service - INFO - {
+  "success": true,
+  "workflow": {
+    "stages": {
+      "S1": {
+        "label": "Sample Preparation",
+        "description": "Initial sample collection and preparation steps for the experiment."
+      },
+      "S2": {
+        "label": "Experimental Treatment",
+        "description": "Application of experimental conditions and treatments to prepared samples."
+      },
+      "S3": {
+        "label": "Data Collection",
+        "description": "Measurement and recording of experimental outcomes and observations."
+      },
+      "S4": {
+        "label": "Data Analysis",
+        "description": "Statistical analysis and interpretation of collected experimental data."
+      }
+    },
+    "stageEdges": [
+      {
+        "from": "S1",
+        "to": "S2",
+        "label": "Prepared Samples \u2192 Treatment",
+        "description": "Prepared samples proceed to experimental treatment phase."
+      },
+      {
+        "from": "S2",
+        "to": "S3",
+        "label": "Treatment \u2192 Measurement",
+        "description": "Treated samples are measured and data is collected."
+      },
+      {
+        "from": "S3",
+        "to": "S4",
+        "label": "Data \u2192 Analysis",
+        "description": "Collected data undergoes statistical analysis."
+      }
+    ],
+    "steps": {
+      "S1.1": {
+        "label": "Sample Collection",
+        "type": "Experimental",
+        "description": "Collection of biological or material samples for analysis.",
+        "metadata": {
+          "sample_type": "biological",
+          "collection_method": "standard protocol"
+        }
+      },
+      "S1.2": {
+        "label": "Sample Processing",
+        "type": "Experimental",
+        "description": "Processing and preparation of collected samples for experimentation.",
+        "metadata": {
+          "processing_time": "2 hours",
+          "temperature": "room temperature"
+        }
+      },
+      "S2.1": {
+        "label": "Treatment Application",
+        "type": "Experimental",
+        "description": "Application of experimental treatment to prepared samples.",
+        "metadata": {
+          "treatment_duration": "24 hours",
+          "conditions": "controlled environment"
+        }
+      }
+    },
+    "stepEdges": [
+      {
+        "from": "S1.1",
+        "to": "S1.2",
+        "relation": "preceded_by",
+        "description": "Samples must be collected before processing.",
+        "label": "Sequential"
+      },
+      {
+        "from": "S1.2",
+        "to": "S2.1",
+        "relation": "generates",
+        "description": "Processed samples enable treatment application.",
+        "label": "Generated"
+      }
+    ]
+  }
+}
+2025-06-27 12:47:46,556 - app.services.gemini_service - INFO - ================================================================================
+2025-06-27 12:47:46,556 - app.services.workflow_generator - INFO - Successfully generated workflow from PDF
+<thinking>
+The plan is to break down the research paper's methodology into stages and steps.  Each step will have a unique ID (e.g., S1.1, S1.2, S2.1 etc.),  a label describing its function, an objective, rationale (if provided), type (e.g., "in-vitro experiment", "animal procedure", "data analysis"), inputs (referencing outputs from previous steps), outputs, references (figures, tables etc), and details about equipment, reagents, software, and parameters.  Special attention will be paid to capturing all numerical values and specific product information.  The workflow will be structured as a JSON object as per the provided schema.  Missing information will be represented with "null" or "Not Specified".
+</thinking>
+```
+```json
+{
+  "paper_title": "CRISPR/Cas9-mediated genome editing in wild-derived mice: generation of tamed wild-derived strains by mutation of the a (nonagouti) gene",
+  "citation": {
+    "text": "Hirose, M. et al. CRISPR/Cas9-mediated genome editing in wild-derived mice: generation of tamed wild-derived strains by mutation of the a (nonagouti) gene. Sci. Rep. 7, 42476; doi: 10.1038/srep42476 (2017).",
+    "doi_url": "https://doi.org/10.1038/srep42476"
+  },
+  "workflow": [
+    {
+      "stage_id": "S1",
+      "stage_label": "Generation of nonagouti KO mice",
+      "stage_description": "Generating knockout mice of the nonagouti gene using CRISPR/Cas9 system and assisted reproductive technologies.",
+      "steps": [
+        {
+          "step_id": "S1.1",
+          "step_label": "sgRNA Design and Efficiency Evaluation",
+          "objective": "Design and evaluate the efficiency of three sgRNA sequences targeting the nonagouti (a) gene in MSM/Ms mice.",
+          "rationale": "To ensure effective gene knockout via CRISPR/Cas9.",
+          "type": "in-vitro experiment",
+          "inputs": [],
+          "outputs": ["validated sgRNA sequences"],
+          "references": ["Supplementary Fig. S1", "Supplementary Table S4", "Supplementary Table S5"],
+          "details": {
+            "equipment": [
+              { "item": "Fluorescence microscope", "model": "BZ-9000", "manufacturer": "Keyence" },
+              { "item": "Image analysis system", "model": "BZ-II Analyzer", "manufacturer": "Keyence" },
+              { "item": "Electroporator", "model": "NEPA21", "manufacturer": "Nepa Gene Co., Ltd." }
+            ],
+            "reagents": [
+              { "item": "pCAG-EGxxFP plasmid", "concentration": "10 μg", "supplier": "Not Specified" },
+              { "item": "pX330 plasmid", "concentration": "10 μg", "supplier": "Addgene (http://www.addgene.org/42230/)" }
+            ],
+            "software": [ { "name": "GeneSpring GX", "version": "13.1.1" } ],
+            "parameters": {
+              "PCR_cycles": "35 cycles of 94 °C for 30 s, 60 °C for 30 s, and 72 °C for 30 s"
+            }
+          }
+        },
+        {
+          "step_id": "S1.2",
+          "step_label": "CRISPR/Cas9 mediated gene editing in zygotes",
+          "objective": "Generate nonagouti gene knockout mice using CRISPR/Cas9.",
+          "rationale": "To create a mouse model with a targeted gene mutation.",
+          "type": "animal procedure",
+          "inputs": ["validated sgRNA sequences", "from_step:S1.1"],
+          "outputs": ["injected zygotes", "2-cell stage embryos", "transferred embryos", "born pups"],
+          "references": ["Table 1", "Fig. 1a"],
+          "details": {
+            "equipment": [],
+            "reagents": [
+              { "item": "KSOM medium", "concentration": "Not Specified", "supplier": "Not Specified" },
+              { "item": "Plasmids", "concentration": "5 ng/μl", "supplier": "Not Specified" },
+              { "item": "Cyclosporin A", "concentration": "1 or 2 mg/kg", "supplier": "Sigma-Aldrich" }
+            ],
+            "software": [],
+            "parameters": {
+              "zygotes_injected": "127",
+              "2_cell_stage_embryos": "92 (72%)",
+              "embryos_transferred": "92",
+              "pups_born": "3"
+            }
+          }
+        },
+        {
+          "step_id": "S1.3",
+          "step_label": "Genotyping and allele identification",
+          "objective": "Genotype the offspring and determine the specific alleles of the nonagouti gene.",
+          "rationale": "To confirm successful gene knockout and identify the resulting mutations.",
+          "type": "molecular analysis",
+          "inputs": ["born pups", "from_step:S1.2"],
+          "outputs": ["genotyped mice", "allele sequences"],
+          "references": ["Fig. 1b", "Fig. 1c", "Fig. 1d", "Supplementary Fig. S2", "Supplementary Fig. S3", "Supplementary Table S5"],
+          "details": {
+            "equipment": [],
+            "reagents": [
+              { "item": "pT7 Blue T-vector", "concentration": "Not Specified", "supplier": "Merck Millipore" }
+            ],
+            "software": [],
+            "parameters": {
+              "alleles_identified": "A, B, C, D"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "stage_id": "S2",
+      "stage_label": "Phenotypic Analysis",
+      "stage_description": "Analyzing the physiological, morphological and behavioral phenotypes of the generated KO mice.",
+      "steps": [
+        {
+          "step_id": "S2.1",
+          "step_label": "Physiological and Morphological Analysis",
+          "objective": "Assess physiological and morphological parameters of the KO mice.",
+          "rationale": "To determine any potential side effects of the gene knockout.",
+          "type": "animal procedure",
+          "inputs": ["genotyped mice", "from_step:S1.3"],
+          "outputs": ["physiological data", "morphological data"],
+          "references": ["Supplementary Fig. S4", "Supplementary Fig. S5", "Supplementary Fig. S6"],
+          "details": {
+            "equipment": [],
+            "reagents": [],
+            "software": [],
+            "parameters": {
+              "age_at_modified_SHIRPA": "8 weeks",
+              "age_at_serum_analysis": "19 weeks",
+              "age_at_euthanasia": "26 weeks"
+            }
+          }
+        },
+        {
+          "step_id": "S2.2",
+          "step_label": "Behavioral Analysis",
+          "objective": "Assess behavioral changes in the KO mice.",
+          "rationale": "To investigate potential effects of the nonagouti gene on behavior.",
+          "type": "behavioral test",
+          "inputs": ["genotyped mice", "from_step:S1.3"],
+          "outputs": ["behavioral data"],
+          "references": ["Fig. 2", "Fig. 3a", "Fig. 3b", "Fig. 3c", "Supplementary Movies S1 and S2"],
+          "details": {
+            "equipment": [],
+            "reagents": [],
+            "software": [],
+            "parameters": {
+              "age_at_light_dark_transition_test": "8 weeks",
+              "age_at_open_field_test_1": "9 weeks",
+              "age_at_open_field_test_2": "10 weeks",
+              "age_at_home_cage_activity_test": "10-11 weeks",
+              "age_at_tameness_test_1": "6 weeks",
+              "age_at_tameness_test_2": "8 weeks"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "stage_id": "S3",
+      "stage_label": "Molecular Analysis of Midbrain",
+      "stage_description": "Investigating the molecular mechanisms underlying the observed behavioral changes in KO mice.",
+      "steps": [
+        {
+          "step_id": "S3.1",
+          "step_label": "Microarray analysis",
+          "objective": "Identify differentially expressed genes in the midbrain of KO mice compared to WT mice.",
+          "rationale": "To explore potential molecular mechanisms responsible for observed behavioural changes.",
+          "type": "gene expression analysis",
+          "inputs": ["genotyped mice", "from_step:S1.3"],
+          "outputs": ["gene expression data", "differentially expressed genes"],
+          "references": ["Fig. 4a", "Supplementary Table S1", "Supplementary Table S2", "Supplementary Table S3", "Supplementary Fig. S7", "GSE84840"],
+          "details": {
+            "equipment": [
+              { "item": "DNA microarray scanner", "manufacturer": "Agilent Technologies" }
+            ],
+            "reagents": [
+              { "item": "Low-Input QuickAmp Labeling Kit", "supplier": "Agilent Technologies" },
+              { "item": "SurePrint G3 Mouse Gene Expression v2 8 × 60 K Microarray Kits", "supplier": "Agilent Technologies" },
+              { "item": "Trizol", "supplier": "Thermo Fisher Scientific" }
+            ],
+            "software": [ { "name": "Feature Extraction", "version": null }, { "name": "Gene Spring GX", "version": "13.1.1" } ],
+            "parameters": {
+              "probes_detected": "34,469",
+              "fold_change_threshold": "2"
+            }
+          }
+        },
+        {
+          "step_id": "S3.2",
+          "step_label": "RT-qPCR validation",
+          "objective": "Validate the microarray results by RT-qPCR.",
+          "rationale": "To confirm the differential expression of target genes.",
+          "type": "gene expression analysis",
+          "inputs": ["gene expression data", "from_step:S3.1"],
+          "outputs": ["validated gene expression data"],
+          "references": ["Fig. 4b", "Supplementary Table S5"],
+          "details": {
+            "equipment": [ { "item": "7900HT Sequence Detector system", "manufacturer": "Applied Biosystems" } ],
+            "reagents": [ { "item": "SuperScript III First-Strand Synthesis System", "supplier": "Invitrogen" } ],
+            "software": [],
+            "parameters": {}
+          }
+        },
+        {
+          "step_id": "S3.3",
+          "step_label": "ChIP analysis",
+          "objective": "Analyze histone modifications on the Slc6a3 gene.",
+          "rationale": "To investigate epigenetic regulation of Slc6a3.",
+          "type": "epigenetic analysis",
+          "inputs": ["genotyped mice", "from_step:S1.3"],
+          "outputs": ["ChIP data", "histone modification levels"],
+          "references": ["Fig. 4c", "Supplementary Table S5"],
+          "details": {
+            "equipment": [ { "item": "Covaris S220 instrument", "manufacturer": "Covaris" } ],
+            "reagents": [ { "item": "truChIP Tissue Chromatin Shearing Reagent kits", "supplier": "Covaris" }, { "item": "Dynabeads Protein G", "supplier": "Invitrogen" } ],
+            "software": [],
+            "parameters": {}
+          }
+        },
+        {
+          "step_id": "S3.4",
+          "step_label": "Dopamine Measurement",
+          "objective": "Measure dopamine levels in the midbrain.",
+          "rationale": "To assess potential changes in dopamine neurotransmission.",
+          "type": "biochemical analysis",
+          "inputs": ["genotyped mice", "from_step:S1.3"],
+          "outputs": ["dopamine levels"],
+          "references": ["Fig. 4d"],
+          "details": {
+            "equipment": [
+              { "item": "HPLC system", "model": "EP-300", "manufacturer": "Eicom" },
+              { "item": "Electrochemical detector", "model": "ECD-300", "manufacturer": "Eicom" },
+              { "item": "PowerChrom system", "manufacturer": "eDAQ" }
+            ],
+            "reagents": [ { "item": "isoproterenol", "concentration": "150 ng/tissue", "supplier": "Not Specified" } ],
+            "software": [],
+            "parameters": {}
+          }
+        }
+      ]
+    }
+  ]
+}
+INFO:     127.0.0.1:50939 - "POST /api/upload HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50962 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50970 - "GET / HTTP/1.1" 200 OK
+2025-06-27 12:49:40,246 - app.api.upload - INFO - Processing PDF: srep42476.pdf (3197437 bytes)
+2025-06-27 12:49:40,246 - app.services.workflow_generator - INFO - Extracting text from PDF: srep42476.pdf
+2025-06-27 12:49:40,251 - app.services.pdf_parser - INFO - Trying pymupdf4llm for /var/folders/h5/0dkg2lpd1zqc9kw115p9m4sm0000gn/T/tmpldeh39y6.pdf
+2025-06-27 12:49:41,989 - app.services.pdf_parser - INFO - ✅ pymupdf4llm extracted 44313 characters
+2025-06-27 12:49:41,990 - app.services.workflow_generator - INFO - Generating workflow from extracted text (44313 chars)
+2025-06-27 12:50:12,601 - app.services.gemini_service - INFO - 🔍 RAW GEMINI RESPONSE:
+2025-06-27 12:50:12,602 - app.services.gemini_service - INFO - ================================================================================
+2025-06-27 12:50:12,602 - app.services.gemini_service - INFO - ```xml
+<thinking>
+The plan is to systematically parse the provided text, identifying each stage of the workflow (generation of knockout mice, physiological analysis, behavioral analysis, gene expression and biochemical analysis).  Within each stage, I'll break down the steps, extracting details like equipment, reagents, software, parameters (sample sizes, concentrations, etc.), references to figures and tables, and the rationale behind choices where provided.  The JSON structure will strictly adhere to the provided schema.  Null values will be used for any missing information. Inputs and outputs of steps will be linked using the specified naming convention.
+</thinking>
+```
+```json
+{
+  "paper_title": "CRISPR/Cas9-mediated genome editing in wild-derived mice: generation of tamed wild-derived strains by mutation of the a (nonagouti) gene",
+  "citation": {
+    "text": "Hirose, M. et al. CRISPR/Cas9-mediated genome editing in wild-derived mice: generation of tamed wild-derived strains by mutation of the a (nonagouti) gene. Sci. Rep. 7, 42476; doi: 10.1038/srep42476 (2017).",
+    "doi_url": "https://doi.org/10.1038/srep42476"
+  },
+  "workflow": [
+    {
+      "stage_id": "S1",
+      "stage_label": "Generation of nonagouti KO lines",
+      "stage_description": "Generation of nonagouti knockout mice using CRISPR/Cas9 system.",
+      "steps": [
+        {
+          "step_id": "S1.1",
+          "step_label": "sgRNA Design and Efficiency Validation",
+          "objective": "Design and validate the efficiency of sgRNAs targeting the nonagouti (a) gene.",
+          "rationale": "To ensure high efficacy of double-strand break (DSB)-mediated homology-dependent repair before injection into zygotes.",
+          "type": "In vitro transfection",
+          "inputs": [],
+          "outputs": ["validated sgRNA sequences"],
+          "references": ["Supplementary Fig. S1"],
+          "details": {
+            "equipment": [
+              {
+                "item": "Electroporator",
+                "model": "NEPA21",
+                "manufacturer": "Nepa Gene Co., Ltd."
+              },
+              {
+                "item": "Fluorescence microscope",
+                "model": "BZ-9000",
+                "manufacturer": "Keyence"
+              },
+              {
+                "item": "Image analysis system",
+                "model": "BZ-II Analyzer",
+                "manufacturer": "Keyence"
+              }
+            ],
+            "reagents": [],
+            "software": [
+              {
+                "name": null,
+                "version": null
+              }
+            ],
+            "parameters": {
+              "sample_size": "3 x 10^5 HEK 293 cells/well",
+              "plasmid_concentration": "10 μg"
+            }
+          }
+        },
+        {
+          "step_id": "S1.2",
+          "step_label": "Zygote Injection and Culture",
+          "objective": "Inject CRISPR/Cas9 constructs into mouse zygotes and culture.",
+          "rationale": "To introduce the gene editing components into the developing embryos.",
+          "type": "Microinjection",
+          "inputs": ["validated sgRNA sequences", "from_step:S1.1"],
+          "outputs": ["injected zygotes"],
+          "references": ["Fig. 1a", "Table 1"],
+          "details": {
+            "equipment": [],
+            "reagents": [
+              {
+                "item": "plasmids",
+                "concentration": "5 ng/μl",
+                "supplier": "Not Specified"
+              },
+              {
+                "item": "KSOM medium",
+                "concentration": null,
+                "supplier": "Not Specified"
+              }
+            ],
+            "software": [],
+            "parameters": {
+              "zygote_number": "127",
+              "culture_duration": "24 h",
+              "culture_conditions": "37 °C under 5% CO2 in air"
+            }
+          }
+        },
+        {
+          "step_id": "S1.3",
+          "step_label": "Embryo Transfer and Pup Development",
+          "objective": "Transfer cultured embryos into recipient mice and monitor pup development.",
+          "rationale": "To allow embryos to develop to term and assess the success of gene editing.",
+          "type": "Embryo transfer",
+          "inputs": ["injected zygotes", "from_step:S1.2"],
+          "outputs": ["live pups"],
+          "references": ["Fig. 1a", "Table 1"],
+          "details": {
+            "equipment": [],
+            "reagents": [
+              {
+                "item": "cyclosporin A",
+                "concentration": "1 or 2 mg/kg",
+                "supplier": "Sigma-Aldrich"
+              }
+            ],
+            "software": [],
+            "parameters": {
+              "embryo_transfer_day": "1",
+              "cyclosporin_A_injection_day": "5",
+              "pups_born": "3"
+            }
+          }
+        },
+        {
+          "step_id": "S1.4",
+          "step_label": "Genotyping and Allele Characterization",
+          "objective": "Genotype pups and characterize resulting alleles.",
+          "rationale": "To confirm successful gene knockout and identify specific mutations.",
+          "type": "Genomic sequencing and PCR",
+          "inputs": ["live pups", "from_step:S1.3"],
+          "outputs": ["homozygous KO mice", "allele sequences"],
+          "references": ["Fig. 1b", "Fig. 1c", "Fig. 1d", "Supplementary Fig. S2", "Supplementary Fig. S3"],
+          "details": {
+            "equipment": [],
+            "reagents": [],
+            "software": [],
+            "parameters": {
+              "sample_size": "3 pups"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "stage_id": "S2",
+      "stage_label": "Physiological Parameter Analysis",
+      "stage_description": "Analysis of physiological parameters in KO and WT mice.",
+      "steps": [
+        {
+          "step_id": "S2.1",
+          "step_label": "Modified SHIRPA Protocol",
+          "objective": "Conduct a comprehensive phenotype screen using the modified SHIRPA protocol.",
+          "rationale": "To assess overall physiological status and identify any potential genotype-related differences.",
+          "type": "Phenotype screening",
+          "inputs": ["homozygous KO mice", "from_step:S1.4", "WT MSM/Ms mice"],
+          "outputs": ["physiological data at 8 weeks"],
+          "references": ["Supplementary Fig. S4", "13", "34"],
+          "details": {
+            "equipment": [],
+            "reagents": [],
+            "software": [],
+            "parameters": {
+              "age": "8 weeks",
+              "sample_size": "Not Specified"
+            }
+          }
+        },
+        {
+          "step_id": "S2.2",
+          "step_label": "Serum Biochemical and Adipocytokine Analysis",
+          "objective": "Analyze serum biochemical parameters and serum adipocytokines.",
+          "rationale": "To assess blood chemistry and identify any potential metabolic differences.",
+          "type": "Serum analysis",
+          "inputs": ["homozygous KO mice", "from_step:S1.4", "WT MSM/Ms mice"],
+          "outputs": ["serum data at 19 weeks"],
+          "references": ["Supplementary Fig. S5"],
+          "details": {
+            "equipment": [],
+            "reagents": [],
+            "software": [],
+            "parameters": {
+              "age": "19 weeks",
+              "sample_size": "Not Specified"
+            }
+          }
+        },
+        {
+          "step_id": "S2.3",
+          "step_label": "Organ Morphology Examination",
+          "objective": "Examine gross morphology of organs.",
+          "rationale": "To identify any genotype-related differences in organ size or structure.",
+          "type": "Macroscopic examination",
+          "inputs": ["homozygous KO mice", "from_step:S1.4", "WT MSM/Ms mice"],
+          "outputs": ["organ morphology data at 26 weeks"],
+          "references": ["Supplementary Fig. S6"],
+          "details": {
+            "equipment": [],
+            "reagents": [],
+            "software": [],
+            "parameters": {
+              "age": "26 weeks",
+              "sample_size": "Not Specified",
+              "euthanasia_method": "cervical dislocation"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "stage_id": "S3",
+      "stage_label": "Behavioral Analysis",
+      "stage_description": "Analysis of behavioral parameters in KO and WT mice.",
+      "steps": [
+        {
+          "step_id": "S3.1",
+          "step_label": "Light/Dark Transition, Open Field, and Home Cage Activity Tests",
+          "objective": "Assess various aspects of locomotor activity and exploration.",
+          "rationale": "To determine if there are differences in behavior between the KO and WT mice.",
+          "type": "Behavioral tests",
+          "inputs": ["homozygous KO mice", "from_step:S1.4", "WT MSM/Ms mice"],
+          "outputs": ["behavioral data at 8, 9, and 10 weeks"],
+          "references": ["Fig. 2", "http://ja.brc.riken.jp/lab/jmc/mouse_clinic/en/"],
+          "details": {
+            "equipment": [],
+            "reagents": [],
+            "software": [],
+            "parameters": {
+              "ages": ["8 weeks", "9 weeks", "10 weeks"],
+              "sample_size": "Not Specified (excluding females in some tests)"
+            }
+          }
+        },
+        {
+          "step_id": "S3.2",
+          "step_label": "Tameness Test (Stay-on-Hand)",
+          "objective": "Assess tameness using the stay-on-hand test.",
+          "rationale": "To evaluate the effect of the nonagouti mutation on tameness.",
+          "type": "Behavioral test",
+          "inputs": ["homozygous KO mice", "from_step:S1.4", "WT MSM/Ms mice"],
+          "outputs": ["tameness data at 6 and 8 weeks"],
+          "references": ["Fig. 3a", "Fig. 3b", "Fig. 3c", "Supplementary Movies S1 and S2", "35"],
+          "details": {
+            "equipment": [],
+            "reagents": [],
+            "software": [],
+            "parameters": {
+              "ages": ["6 weeks", "8 weeks"],
+              "max_time_per_trial": "10s",
+              "sample_size": "Not Specified"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "stage_id": "S4",
+      "stage_label": "Gene Expression and Biochemical Analysis of Midbrain",
+      "stage_description": "Analysis of gene expression and dopamine levels in the midbrain.",
+      "steps": [
+        {
+          "step_id": "S4.1",
+          "step_label": "Microarray Analysis",
+          "objective": "Analyze gene expression in the midbrain using microarrays.",
+          "rationale": "To identify genes differentially expressed between KO and WT mice, potentially providing insights into the mechanism of altered behavior.",
+          "type": "Gene expression analysis",
+          "inputs": ["homozygous KO mice", "from_step:S1.4", "WT MSM/Ms mice"],
+          "outputs": ["gene expression data", "list of up- and down-regulated genes"],
+          "references": ["Fig. 4a", "Supplementary Table S1", "Supplementary Table S2", "Supplementary Table S3", "Supplementary Fig. S7"],
+          "details": {
+            "equipment": [
+              {
+                "item": "DNA microarray scanner",
+                "model": null,
+                "manufacturer": "Agilent Technologies"
+              }
+            ],
+            "reagents": [
+              {
+                "item": "Low-Input QuickAmp Labeling Kit",
+                "concentration": null,
+                "supplier": "Agilent Technologies"
+              },
+              {
+                "item": "SurePrint G3 Mouse Gene Expression v2 8 × 60 K Microarray Kits",
+                "concentration": null,
+                "supplier": "Agilent Technologies"
+              },
+              {
+                "item": "Trizol",
+                "concentration": null,
+                "supplier": "Thermo Fisher Scientific"
+              }
+            ],
+            "software": [
+              {
+                "name": "Feature Extraction",
+                "version": null
+              },
+              {
+                "name": "Gene Spring GX",
+                "version": "13.1.1"
+              }
+            ],
+            "parameters": {
+              "sample_size": "Not Specified",
+              "age": "8-9 weeks",
+              "hybridization_temperature": "65 °C",
+              "hybridization_duration": "17 h"
+            }
+          }
+        },
+        {
+          "step_id": "S4.2",
+          "step_label": "RT-qPCR Analysis of Slc6a3",
+          "objective": "Validate Slc6a3 expression levels using RT-qPCR.",
+          "rationale": "To confirm the microarray results for Slc6a3.",
+          "type": "Gene expression analysis",
+          "inputs": ["gene expression data", "from_step:S4.1"],
+          "outputs": ["validated Slc6a3 expression data"],
+          "references": ["Fig. 4b", "Supplementary Table S5"],
+          "details": {
+            "equipment": [
+              {
+                "item": "Sequence Detector system",
+                "model": "7900HT",
+                "manufacturer": "Applied Biosystems"
+              }
+            ],
+            "reagents": [
+              {
+                "item": "SuperScript III First-Strand Synthesis System",
+                "concentration": null,
+                "supplier": "Invitrogen"
+              }
+            ],
+            "software": [],
+            "parameters": {
+              "sample_size": "Not Specified"
+            }
+          }
+        },
+        {
+          "step_id": "S4.3",
+          "step_label": "ChIP Analysis of H3K27me3 on Slc6a3",
+          "objective": "Analyze H3K27me3 enrichment on the Slc6a3 gene.",
+          "rationale": "To investigate potential epigenetic regulation of Slc6a3.",
+          "type": "Chromatin immunoprecipitation",
+          "inputs": ["homozygous KO mice", "from_step:S1.4", "WT MSM/Ms mice"],
+          "outputs": ["H3K27me3 enrichment data"],
+          "references": ["Fig. 4c", "Supplementary Table S5", "36"],
+          "details": {
+            "equipment": [
+              {
+                "item": "Covaris S220 instrument",
+                "model": "S220",
+                "manufacturer": "Covaris"
+              },
+              {
+                "item": "Sequence Detector",
+                "model": "ABI 7900HT",
+                "manufacturer": "Thermo Fisher Scientific"
+              }
+            ],
+            "reagents": [
+              {
+                "item": "truChIP Tissue Chromatin Shearing Reagent kits",
+                "concentration": null,
+                "supplier": "Covaris"
+              },
+              {
+                "item": "Dynabeads Protein G",
+                "concentration": null,
+                "supplier": "Invitrogen"
+              }
+            ],
+            "software": [],
+            "parameters": {
+              "sample_size": "Not Specified"
+            }
+          }
+        },
+        {
+          "step_id": "S4.4",
+          "step_label": "Dopamine Concentration Measurement",
+          "objective": "Measure dopamine concentrations in the midbrain.",
+          "rationale": "To assess potential changes in dopamine levels that could relate to altered behavior.",
+          "type": "Biochemical analysis",
+          "inputs": ["homozygous KO mice", "from_step:S1.4", "WT MSM/Ms mice"],
+          "outputs": ["dopamine concentration data"],
+          "references": ["Fig. 4d"],
+          "details": {
+            "equipment": [
+              {
+                "item": "HPLC system",
+                "model": "EP-300",
+                "manufacturer": "Eicom"
+              },
+              {
+                "item": "Electrochemical detector",
+                "model": "ECD-300",
+                "manufacturer": "Eicom"
+              },
+              {
+                "item": "PowerChrom system",
+                "model": null,
+                "manufacturer": "eDAQ"
+              }
+            ],
+            "reagents": [
+              {
+                "item": "isoproterenol",
+                "concentration": "150 ng/tissue",
+                "supplier": "Not Specified"
+              },
+              {
+                "item": "sodium acetate-citric acid buffer",
+                "concentration": "100 mM",
+                "supplier": "Not Specified"
+              },
+              {
+                "item": "methanol",
+                "concentration": null,
+                "supplier": "Not Specified"
+              },
+              {
+                "item": "sodium 1-octanesulfonate",
+                "concentration": "190 mg/l",
+                "supplier": "Not Specified"
+              },
+              {
+                "item": "EDTA",
+                "concentration": "5 mg/l",
+                "supplier": "Not Specified"
+              }
+            ],
+            "software": [],
+            "parameters": {
+              "sample_size": "Not Specified",
+              "flow_rate": "0.5 ml/min",
+              "temperature": "30 °C"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+
+2025-06-27 12:50:12,602 - app.services.gemini_service - INFO - ================================================================================
+2025-06-27 12:50:12,602 - app.services.gemini_service - INFO - 🧹 CLEANED RESPONSE TEXT LENGTH: 17005
+2025-06-27 12:50:12,602 - app.services.gemini_service - INFO - ✂️ REMOVED MARKDOWN CODE BLOCKS
+2025-06-27 12:50:12,602 - app.services.gemini_service - INFO - 📝 FINAL TEXT BEFORE JSON PARSE:
+2025-06-27 12:50:12,602 - app.services.gemini_service - INFO - First 500 chars: <thinking>
+The plan is to systematically parse the provided text, identifying each stage of the workflow (generation of knockout mice, physiological analysis, behavioral analysis, gene expression and biochemical analysis).  Within each stage, I'll break down the steps, extracting details like equipment, reagents, software, parameters (sample sizes, concentrations, etc.), references to figures and tables, and the rationale behind choices where provided.  The JSON structure will strictly adhere to...
+<thinking>
+The plan is to systematically parse the provided text, identifying each stage of the workflow (generation of knockout mice, physiological analysis, behavioral analysis, gene expression and biochemical analysis).  Within each stage, I'll break down the steps, extracting details like equipment, reagents, software, parameters (sample sizes, concentrations, etc.), references to figures and tables, and the rationale behind choices where provided.  The JSON structure will strictly adhere to the provided schema.  Null values will be used for any missing information. Inputs and outputs of steps will be linked using the specified naming convention.
+</thinking>
+```
+```json
+{
+  "paper_title": "CRISPR/Cas9-mediated genome editing in wild-derived mice: generation of tamed wild-derived strains by mutation of the a (nonagouti) gene",
+  "citation": {
+    "text": "Hirose, M. et al. CRISPR/Cas9-mediated genome editing in wild-derived mice: generation of tamed wild-derived strains by mutation of the a (nonagouti) gene. Sci. Rep. 7, 42476; doi: 10.1038/srep42476 (2017).",
+    "doi_url": "https://doi.org/10.1038/srep42476"
+  },
+  "workflow": [
+    {
+      "stage_id": "S1",
+      "stage_label": "Generation of nonagouti KO lines",
+      "stage_description": "Generation of nonagouti knockout mice using CRISPR/Cas9 system.",
+      "steps": [
+        {
+          "step_id": "S1.1",
+          "step_label": "sgRNA Design and Efficiency Validation",
+          "objective": "Design and validate the efficiency of sgRNAs targeting the nonagouti (a) gene.",
+          "rationale": "To ensure high efficacy of double-strand break (DSB)-mediated homology-dependent repair before injection into zygotes.",
+          "type": "In vitro transfection",
+          "inputs": [],
+          "outputs": ["validated sgRNA sequences"],
+          "references": ["Supplementary Fig. S1"],
+          "details": {
+            "equipment": [
+              {
+                "item": "Electroporator",
+                "model": "NEPA21",
+                "manufacturer": "Nepa Gene Co., Ltd."
+              },
+              {
+                "item": "Fluorescence microscope",
+                "model": "BZ-9000",
+                "manufacturer": "Keyence"
+              },
+              {
+                "item": "Image analysis system",
+                "model": "BZ-II Analyzer",
+                "manufacturer": "Keyence"
+              }
+            ],
+            "reagents": [],
+            "software": [
+              {
+                "name": null,
+                "version": null
+              }
+            ],
+            "parameters": {
+              "sample_size": "3 x 10^5 HEK 293 cells/well",
+              "plasmid_concentration": "10 μg"
+            }
+          }
+        },
+        {
+          "step_id": "S1.2",
+          "step_label": "Zygote Injection and Culture",
+          "objective": "Inject CRISPR/Cas9 constructs into mouse zygotes and culture.",
+          "rationale": "To introduce the gene editing components into the developing embryos.",
+          "type": "Microinjection",
+          "inputs": ["validated sgRNA sequences", "from_step:S1.1"],
+          "outputs": ["injected zygotes"],
+          "references": ["Fig. 1a", "Table 1"],
+          "details": {
+            "equipment": [],
+            "reagents": [
+              {
+                "item": "plasmids",
+                "concentration": "5 ng/μl",
+                "supplier": "Not Specified"
+              },
+              {
+                "item": "KSOM medium",
+                "concentration": null,
+                "supplier": "Not Specified"
+              }
+            ],
+            "software": [],
+            "parameters": {
+              "zygote_number": "127",
+              "culture_duration": "24 h",
+              "culture_conditions": "37 °C under 5% CO2 in air"
+            }
+          }
+        },
+        {
+          "step_id": "S1.3",
+          "step_label": "Embryo Transfer and Pup Development",
+          "objective": "Transfer cultured embryos into recipient mice and monitor pup development.",
+          "rationale": "To allow embryos to develop to term and assess the success of gene editing.",
+          "type": "Embryo transfer",
+          "inputs": ["injected zygotes", "from_step:S1.2"],
+          "outputs": ["live pups"],
+          "references": ["Fig. 1a", "Table 1"],
+          "details": {
+            "equipment": [],
+            "reagents": [
+              {
+                "item": "cyclosporin A",
+                "concentration": "1 or 2 mg/kg",
+                "supplier": "Sigma-Aldrich"
+              }
+            ],
+            "software": [],
+            "parameters": {
+              "embryo_transfer_day": "1",
+              "cyclosporin_A_injection_day": "5",
+              "pups_born": "3"
+            }
+          }
+        },
+        {
+          "step_id": "S1.4",
+          "step_label": "Genotyping and Allele Characterization",
+          "objective": "Genotype pups and characterize resulting alleles.",
+          "rationale": "To confirm successful gene knockout and identify specific mutations.",
+          "type": "Genomic sequencing and PCR",
+          "inputs": ["live pups", "from_step:S1.3"],
+          "outputs": ["homozygous KO mice", "allele sequences"],
+          "references": ["Fig. 1b", "Fig. 1c", "Fig. 1d", "Supplementary Fig. S2", "Supplementary Fig. S3"],
+          "details": {
+            "equipment": [],
+            "reagents": [],
+            "software": [],
+            "parameters": {
+              "sample_size": "3 pups"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "stage_id": "S2",
+      "stage_label": "Physiological Parameter Analysis",
+      "stage_description": "Analysis of physiological parameters in KO and WT mice.",
+      "steps": [
+        {
+          "step_id": "S2.1",
+          "step_label": "Modified SHIRPA Protocol",
+          "objective": "Conduct a comprehensive phenotype screen using the modified SHIRPA protocol.",
+          "rationale": "To assess overall physiological status and identify any potential genotype-related differences.",
+          "type": "Phenotype screening",
+          "inputs": ["homozygous KO mice", "from_step:S1.4", "WT MSM/Ms mice"],
+          "outputs": ["physiological data at 8 weeks"],
+          "references": ["Supplementary Fig. S4", "13", "34"],
+          "details": {
+            "equipment": [],
+            "reagents": [],
+            "software": [],
+            "parameters": {
+              "age": "8 weeks",
+              "sample_size": "Not Specified"
+            }
+          }
+        },
+        {
+          "step_id": "S2.2",
+          "step_label": "Serum Biochemical and Adipocytokine Analysis",
+          "objective": "Analyze serum biochemical parameters and serum adipocytokines.",
+          "rationale": "To assess blood chemistry and identify any potential metabolic differences.",
+          "type": "Serum analysis",
+          "inputs": ["homozygous KO mice", "from_step:S1.4", "WT MSM/Ms mice"],
+          "outputs": ["serum data at 19 weeks"],
+          "references": ["Supplementary Fig. S5"],
+          "details": {
+            "equipment": [],
+            "reagents": [],
+            "software": [],
+            "parameters": {
+              "age": "19 weeks",
+              "sample_size": "Not Specified"
+            }
+          }
+        },
+        {
+          "step_id": "S2.3",
+          "step_label": "Organ Morphology Examination",
+          "objective": "Examine gross morphology of organs.",
+          "rationale": "To identify any genotype-related differences in organ size or structure.",
+          "type": "Macroscopic examination",
+          "inputs": ["homozygous KO mice", "from_step:S1.4", "WT MSM/Ms mice"],
+          "outputs": ["organ morphology data at 26 weeks"],
+          "references": ["Supplementary Fig. S6"],
+          "details": {
+            "equipment": [],
+            "reagents": [],
+            "software": [],
+            "parameters": {
+              "age": "26 weeks",
+              "sample_size": "Not Specified",
+              "euthanasia_method": "cervical dislocation"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "stage_id": "S3",
+      "stage_label": "Behavioral Analysis",
+      "stage_description": "Analysis of behavioral parameters in KO and WT mice.",
+      "steps": [
+        {
+          "step_id": "S3.1",
+          "step_label": "Light/Dark Transition, Open Field, and Home Cage Activity Tests",
+          "objective": "Assess various aspects of locomotor activity and exploration.",
+          "rationale": "To determine if there are differences in behavior between the KO and WT mice.",
+          "type": "Behavioral tests",
+          "inputs": ["homozygous KO mice", "from_step:S1.4", "WT MSM/Ms mice"],
+          "outputs": ["behavioral data at 8, 9, and 10 weeks"],
+          "references": ["Fig. 2", "http://ja.brc.riken.jp/lab/jmc/mouse_clinic/en/"],
+          "details": {
+            "equipment": [],
+            "reagents": [],
+            "software": [],
+            "parameters": {
+              "ages": ["8 weeks", "9 weeks", "10 weeks"],
+              "sample_size": "Not Specified (excluding females in some tests)"
+            }
+          }
+        },
+        {
+          "step_id": "S3.2",
+          "step_label": "Tameness Test (Stay-on-Hand)",
+          "objective": "Assess tameness using the stay-on-hand test.",
+          "rationale": "To evaluate the effect of the nonagouti mutation on tameness.",
+          "type": "Behavioral test",
+          "inputs": ["homozygous KO mice", "from_step:S1.4", "WT MSM/Ms mice"],
+          "outputs": ["tameness data at 6 and 8 weeks"],
+          "references": ["Fig. 3a", "Fig. 3b", "Fig. 3c", "Supplementary Movies S1 and S2", "35"],
+          "details": {
+            "equipment": [],
+            "reagents": [],
+            "software": [],
+            "parameters": {
+              "ages": ["6 weeks", "8 weeks"],
+              "max_time_per_trial": "10s",
+              "sample_size": "Not Specified"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "stage_id": "S4",
+      "stage_label": "Gene Expression and Biochemical Analysis of Midbrain",
+      "stage_description": "Analysis of gene expression and dopamine levels in the midbrain.",
+      "steps": [
+        {
+          "step_id": "S4.1",
+          "step_label": "Microarray Analysis",
+          "objective": "Analyze gene expression in the midbrain using microarrays.",
+          "rationale": "To identify genes differentially expressed between KO and WT mice, potentially providing insights into the mechanism of altered behavior.",
+          "type": "Gene expression analysis",
+          "inputs": ["homozygous KO mice", "from_step:S1.4", "WT MSM/Ms mice"],
+          "outputs": ["gene expression data", "list of up- and down-regulated genes"],
+          "references": ["Fig. 4a", "Supplementary Table S1", "Supplementary Table S2", "Supplementary Table S3", "Supplementary Fig. S7"],
+          "details": {
+            "equipment": [
+              {
+                "item": "DNA microarray scanner",
+                "model": null,
+                "manufacturer": "Agilent Technologies"
+              }
+            ],
+            "reagents": [
+              {
+                "item": "Low-Input QuickAmp Labeling Kit",
+                "concentration": null,
+                "supplier": "Agilent Technologies"
+              },
+              {
+                "item": "SurePrint G3 Mouse Gene Expression v2 8 × 60 K Microarray Kits",
+                "concentration": null,
+                "supplier": "Agilent Technologies"
+              },
+              {
+                "item": "Trizol",
+                "concentration": null,
+                "supplier": "Thermo Fisher Scientific"
+              }
+            ],
+            "software": [
+              {
+                "name": "Feature Extraction",
+                "version": null
+              },
+              {
+                "name": "Gene Spring GX",
+                "version": "13.1.1"
+              }
+            ],
+            "parameters": {
+              "sample_size": "Not Specified",
+              "age": "8-9 weeks",
+              "hybridization_temperature": "65 °C",
+              "hybridization_duration": "17 h"
+            }
+          }
+        },
+        {
+          "step_id": "S4.2",
+          "step_label": "RT-qPCR Analysis of Slc6a3",
+          "objective": "Validate Slc6a3 expression levels using RT-qPCR.",
+          "rationale": "To confirm the microarray results for Slc6a3.",
+          "type": "Gene expression analysis",
+          "inputs": ["gene expression data", "from_step:S4.1"],
+          "outputs": ["validated Slc6a3 expression data"],
+          "references": ["Fig. 4b", "Supplementary Table S5"],
+          "details": {
+            "equipment": [
+              {
+                "item": "Sequence Detector system",
+                "model": "7900HT",
+                "manufacturer": "Applied Biosystems"
+              }
+            ],
+            "reagents": [
+              {
+                "item": "SuperScript III First-Strand Synthesis System",
+                "concentration": null,
+                "supplier": "Invitrogen"
+              }
+            ],
+            "software": [],
+            "parameters": {
+              "sample_size": "Not Specified"
+            }
+          }
+        },
+        {
+          "step_id": "S4.3",
+          "step_label": "ChIP Analysis of H3K27me3 on Slc6a3",
+          "objective": "Analyze H3K27me3 enrichment on the Slc6a3 gene.",
+          "rationale": "To investigate potential epigenetic regulation of Slc6a3.",
+          "type": "Chromatin immunoprecipitation",
+          "inputs": ["homozygous KO mice", "from_step:S1.4", "WT MSM/Ms mice"],
+          "outputs": ["H3K27me3 enrichment data"],
+          "references": ["Fig. 4c", "Supplementary Table S5", "36"],
+          "details": {
+            "equipment": [
+              {
+                "item": "Covaris S220 instrument",
+                "model": "S220",
+                "manufacturer": "Covaris"
+              },
+              {
+                "item": "Sequence Detector",
+                "model": "ABI 7900HT",
+                "manufacturer": "Thermo Fisher Scientific"
+              }
+            ],
+            "reagents": [
+              {
+                "item": "truChIP Tissue Chromatin Shearing Reagent kits",
+                "concentration": null,
+                "supplier": "Covaris"
+              },
+              {
+                "item": "Dynabeads Protein G",
+                "concentration": null,
+                "supplier": "Invitrogen"
+              }
+            ],
+            "software": [],
+            "parameters": {
+              "sample_size": "Not Specified"
+            }
+          }
+        },
+        {
+          "step_id": "S4.4",
+          "step_label": "Dopamine Concentration Measurement",
+          "objective": "Measure dopamine concentrations in the midbrain.",
+          "rationale": "To assess potential changes in dopamine levels that could relate to altered behavior.",
+          "type": "Biochemical analysis",
+          "inputs": ["homozygous KO mice", "from_step:S1.4", "WT MSM/Ms mice"],
+          "outputs": ["dopamine concentration data"],
+          "references": ["Fig. 4d"],
+          "details": {
+            "equipment": [
+              {
+                "item": "HPLC system",
+                "model": "EP-300",
+                "manufacturer": "Eicom"
+              },
+              {
+                "item": "Electrochemical detector",
+                "model": "ECD-300",
+                "manufacturer": "Eicom"
+              },
+              {
+                "item": "PowerChrom system",
+                "model": null,
+                "manufacturer": "eDAQ"
+              }
+            ],
+            "reagents": [
+              {
+                "item": "isoproterenol",
+                "concentration": "150 ng/tissue",
+                "supplier": "Not Specified"
+              },
+              {
+                "item": "sodium acetate-citric acid buffer",
+                "concentration": "100 mM",
+                "supplier": "Not Specified"
+              },
+              {
+                "item": "methanol",
+                "concentration": null,
+                "supplier": "Not Specified"
+              },
+              {
+                "item": "sodium 1-octanesulfonate",
+                "concentration": "190 mg/l",
+                "supplier": "Not Specified"
+              },
+              {
+                "item": "EDTA",
+                "concentration": "5 mg/l",
+                "supplier": "Not Specified"
+              }
+            ],
+            "software": [],
+            "parameters": {
+              "sample_size": "Not Specified",
+              "flow_rate": "0.5 ml/min",
+              "temperature": "30 °C"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}2025-06-27 12:50:12,602 - app.services.gemini_service - ERROR - Invalid JSON response from Gemini: Expecting value: line 1 column 1 (char 0)
+2025-06-27 12:50:12,602 - app.services.gemini_service - INFO - 🎯 Using sample workflow (no API key or AI failed)
+2025-06-27 12:50:12,602 - app.services.gemini_service - INFO - 🎯 PARSED WORKFLOW JSON:
+2025-06-27 12:50:12,602 - app.services.gemini_service - INFO - ================================================================================
+2025-06-27 12:50:12,603 - app.services.gemini_service - INFO - {
+  "success": true,
+  "workflow": {
+    "stages": {
+      "S1": {
+        "label": "Sample Preparation",
+        "description": "Initial sample collection and preparation steps for the experiment."
+      },
+      "S2": {
+        "label": "Experimental Treatment",
+        "description": "Application of experimental conditions and treatments to prepared samples."
+      },
+      "S3": {
+        "label": "Data Collection",
+        "description": "Measurement and recording of experimental outcomes and observations."
+      },
+      "S4": {
+        "label": "Data Analysis",
+        "description": "Statistical analysis and interpretation of collected experimental data."
+      }
+    },
+    "stageEdges": [
+      {
+        "from": "S1",
+        "to": "S2",
+        "label": "Prepared Samples \u2192 Treatment",
+        "description": "Prepared samples proceed to experimental treatment phase."
+      },
+      {
+        "from": "S2",
+        "to": "S3",
+        "label": "Treatment \u2192 Measurement",
+        "description": "Treated samples are measured and data is collected."
+      },
+      {
+        "from": "S3",
+        "to": "S4",
+        "label": "Data \u2192 Analysis",
+        "description": "Collected data undergoes statistical analysis."
+      }
+    ],
+    "steps": {
+      "S1.1": {
+        "label": "Sample Collection",
+        "type": "Experimental",
+        "description": "Collection of biological or material samples for analysis.",
+        "metadata": {
+          "sample_type": "biological",
+          "collection_method": "standard protocol"
+        }
+      },
+      "S1.2": {
+        "label": "Sample Processing",
+        "type": "Experimental",
+        "description": "Processing and preparation of collected samples for experimentation.",
+        "metadata": {
+          "processing_time": "2 hours",
+          "temperature": "room temperature"
+        }
+      },
+      "S2.1": {
+        "label": "Treatment Application",
+        "type": "Experimental",
+        "description": "Application of experimental treatment to prepared samples.",
+        "metadata": {
+          "treatment_duration": "24 hours",
+          "conditions": "controlled environment"
+        }
+      }
+    },
+    "stepEdges": [
+      {
+        "from": "S1.1",
+        "to": "S1.2",
+        "relation": "preceded_by",
+        "description": "Samples must be collected before processing.",
+        "label": "Sequential"
+      },
+      {
+        "from": "S1.2",
+        "to": "S2.1",
+        "relation": "generates",
+        "description": "Processed samples enable treatment application.",
+        "label": "Generated"
+      }
+    ]
+  }
+}
+2025-06-27 12:50:12,603 - app.services.gemini_service - INFO - ================================================================================
+2025-06-27 12:50:12,603 - app.services.workflow_generator - INFO - Successfully generated workflow from PDF
+
+INFO:     127.0.0.1:51078 - "POST /api/upload HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51096 - "GET /api/health HTTP/1.1" 200 OK
+2025-06-27 12:52:34,389 - app.api.upload - INFO - Processing PDF: srep42476.pdf (3197437 bytes)
+2025-06-27 12:52:34,389 - app.services.workflow_generator - INFO - Extracting text from PDF: srep42476.pdf
+2025-06-27 12:52:34,394 - app.services.pdf_parser - INFO - Trying pymupdf4llm for /var/folders/h5/0dkg2lpd1zqc9kw115p9m4sm0000gn/T/tmpz9pm_rfr.pdf
+2025-06-27 12:52:36,107 - app.services.pdf_parser - INFO - ✅ pymupdf4llm extracted 44313 characters
+2025-06-27 12:52:36,107 - app.services.workflow_generator - INFO - Generating workflow from extracted text (44313 chars)
+2025-06-27 12:52:59,971 - app.services.gemini_service - INFO - 🔍 RAW GEMINI RESPONSE:
+2025-06-27 12:52:59,972 - app.services.gemini_service - INFO - ================================================================================
+2025-06-27 12:52:59,973 - app.services.gemini_service - INFO - ```xml
+<thinking>
+The plan is to systematically go through the research paper and populate the JSON object according to the schema.  I will divide the workflow into stages based on the paper's structure (Generation of nonagouti KO lines, Physiological parameters, Behavioural analysis, Tameness test, Gene expression and biochemical analysis of the midbrain). Each stage will be broken into individual steps.  I will pay close attention to extract all parameters, equipment, reagents, software used, and references to figures and tables. The inputs and outputs will be carefully connected between steps to show the workflow.  Any missing information will be denoted as "Not Specified" or null.
+</thinking>
+```
+
+```json
+{
+  "paper_title": "CRISPR/Cas9-mediated genome editing in wild-derived mice: generation of tamed wild-derived strains by mutation of the a (nonagouti) gene",
+  "citation": {
+    "text": "Hirose, M. et al. CRISPR/Cas9-mediated genome editing in wild-derived mice: generation of tamed wild-derived strains by mutation of the a (nonagouti) gene. Sci. Rep. 7, 42476; doi: 10.1038/srep42476 (2017).",
+    "doi_url": "https://doi.org/10.1038/srep42476"
+  },
+  "workflow": [
+    {
+      "stage_id": "S1",
+      "stage_label": "Generation of nonagouti KO lines",
+      "stage_description": "Generation of nonagouti knockout (KO) mice using CRISPR/Cas9 system.",
+      "steps": [
+        {
+          "step_id": "S1.1",
+          "step_label": "Design and validation of sgRNA",
+          "objective": "Design and validate sgRNA sequences targeting the nonagouti (a) gene in MSM/Ms mice.",
+          "rationale": "To ensure high efficacy of double-strand break (DSB)-mediated homology-dependent repair.",
+          "type": "In silico design and in vitro validation",
+          "inputs": [],
+          "outputs": ["validated sgRNA sequences"],
+          "references": ["Supplementary Fig. S1", "Supplementary Table S4", "Supplementary Table S5", "http://molossinus.lab.nig.ac.jp/msmdb/"],
+          "details": {
+            "equipment": [],
+            "reagents": [],
+            "software": [],
+            "parameters": {}
+          }
+        },
+        {
+          "step_id": "S1.2",
+          "step_label": "CRISPR/Cas9 construct preparation",
+          "objective": "Construct CRISPR/Cas9 vectors containing validated sgRNA sequences.",
+          "rationale": "To deliver the CRISPR/Cas9 system into mouse zygotes.",
+          "type": "Molecular cloning",
+          "inputs": ["validated sgRNA sequences"],
+          "outputs": ["CRISPR/Cas9 constructs"],
+          "references": ["Fig. 1a", "http://www.addgene.org/42230/", "Supplementary Table S5"],
+          "details": {
+            "equipment": [],
+            "reagents": [],
+            "software": [],
+            "parameters": {}
+          }
+        },
+        {
+          "step_id": "S1.3",
+          "step_label": "Zygote injection and culture",
+          "objective": "Inject CRISPR/Cas9 constructs into mouse zygotes and culture.",
+          "type": "Microinjection and cell culture",
+          "inputs": ["CRISPR/Cas9 constructs", "MSM/Ms mouse zygotes"],
+          "outputs": ["2-cell stage embryos"],
+          "references": ["Table 1", "Fig. 1a"],
+          "details": {
+            "equipment": [
+              { "item": "NEPA21 electroporator", "model": "NEPA21", "manufacturer": "Nepa Gene Co., Ltd." },
+              { "item": "Fluorescence microscope", "model": "BZ-9000", "manufacturer": "Keyence" },
+              { "item": "BZ-II Analyzer image analysis system", "model": null, "manufacturer": "Keyence" }
+            ],
+            "reagents": [
+              { "item": "KSOM medium", "concentration": "Not Specified", "supplier": "Not Specified" }
+            ],
+            "software": [],
+            "parameters": {
+              "plasmid_concentration": "5 ng/μl",
+              "culture_temperature": "37 °C",
+              "culture_CO2": "5%",
+              "culture_duration": "24 h",
+              "zygotes_injected": "127"
+            }
+          }
+        },
+        {
+          "step_id": "S1.4",
+          "step_label": "Embryo transfer and pup development",
+          "objective": "Transfer embryos to recipient mice and monitor pup development.",
+          "type": "Embryo transfer",
+          "inputs": ["2-cell stage embryos"],
+          "outputs": ["F0 pups"],
+          "references": ["Table 1", "Fig. 1a", "Fig. 1b"],
+          "details": {
+            "equipment": [],
+            "reagents": [
+              { "item": "cyclosporin A", "concentration": "1 or 2 mg/kg", "supplier": "Sigma-Aldrich" }
+            ],
+            "software": [],
+            "parameters": {}
+          }
+        },
+        {
+          "step_id": "S1.5",
+          "step_label": "Genotyping and line establishment",
+          "objective": "Genotype F0 pups and establish homozygous KO lines.",
+          "type": "Genotyping and breeding",
+          "inputs": ["F0 pups"],
+          "outputs": ["homozygous KO lines (A and D)"],
+          "references": ["Fig. 1c", "Fig. 1d", "Supplementary Fig. S2", "Supplementary Fig. S3", "Supplementary Table S5"],
+          "details": {
+            "equipment": [],
+            "reagents": [],
+            "software": [],
+            "parameters": {}
+          }
+        }
+      ]
+    },
+    {
+      "stage_id": "S2",
+      "stage_label": "Physiological parameters",
+      "stage_description": "Analysis of physiological parameters in KO mice.",
+      "steps": [
+        {
+          "step_id": "S2.1",
+          "step_label": "Modified SHIRPA and serum analysis",
+          "objective": "Analyze physiological and serum parameters using modified SHIRPA protocol and serum biochemistry.",
+          "rationale": "To assess potential physiological differences between WT and KO mice.",
+          "type": "Phenotyping",
+          "inputs": ["homozygous KO lines (A and D)"],
+          "outputs": ["physiological data"],
+          "references": ["Supplementary Fig. S4", "Supplementary Fig. S5", "Supplementary Fig. S6", "http://ja.brc.riken.jp/lab/jmc/mouse_clinic/en/"],
+          "details": {
+            "equipment": [],
+            "reagents": [],
+            "software": [],
+            "parameters": {
+              "age_at_testing": ["8 weeks", "19 weeks", "26 weeks"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "stage_id": "S3",
+      "stage_label": "Behavioural analysis",
+      "stage_description": "Analysis of behavioral parameters in KO mice.",
+      "steps": [
+        {
+          "step_id": "S3.1",
+          "step_label": "Behavioral tests",
+          "objective": "Perform behavioral tests (light/dark transition, open-field, home cage activity).",
+          "rationale": "To assess behavioral differences between WT and KO mice.",
+          "type": "Behavioral assays",
+          "inputs": ["homozygous KO lines (A and D)"],
+          "outputs": ["behavioral data"],
+          "references": ["Fig. 2", "http://ja.brc.riken.jp/lab/jmc/mouse_clinic/en/"],
+          "details": {
+            "equipment": [],
+            "reagents": [],
+            "software": [],
+            "parameters": {
+              "age_at_testing": ["8 weeks", "9 weeks", "10 weeks", "10-11 weeks"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "stage_id": "S4",
+      "stage_label": "Tameness test",
+      "stage_description": "Assessment of tameness in KO mice.",
+      "steps": [
+        {
+          "step_id": "S4.1",
+          "step_label": "Stay-on-hand test",
+          "objective": "Assess tameness using the stay-on-hand test.",
+          "rationale": "To quantify the tameness phenotype.",
+          "type": "Behavioral assay",
+          "inputs": ["homozygous KO lines (A and D)"],
+          "outputs": ["tameness data"],
+          "references": ["Fig. 3", "Supplementary Movies S1 and S2"],
+          "details": {
+            "equipment": [],
+            "reagents": [],
+            "software": [],
+            "parameters": {
+              "age_at_testing": ["6 weeks", "8 weeks"],
+              "max_time_per_trial": "10s",
+              "number_of_trials": "3"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "stage_id": "S5",
+      "stage_label": "Gene expression and biochemical analysis",
+      "stage_description": "Analysis of gene expression and dopamine levels in midbrain.",
+      "steps": [
+        {
+          "step_id": "S5.1",
+          "step_label": "Microarray analysis",
+          "objective": "Analyze gene expression in midbrain using microarray.",
+          "rationale": "To identify genes potentially involved in altered behavior.",
+          "type": "Gene expression analysis",
+          "inputs": ["homozygous KO lines (A and D)"],
+          "outputs": ["gene expression data"],
+          "references": ["Fig. 4a", "Supplementary Table S1", "Supplementary Table S2", "Supplementary Table S3", "Supplementary Fig. S7", "http://www.ncbi.nlm.nih.gov/geo/", "GSE84840", "http://www.genome.jp/kegg/", "https://david.ncifcrf.gov"],
+          "details": {
+            "equipment": [
+              { "item": "DNA microarray scanner", "model": null, "manufacturer": "Agilent Technologies" }
+            ],
+            "reagents": [
+              { "item": "Triazol", "concentration": "Not Specified", "supplier": "Thermo Fisher Scientific" },
+              { "item": "Low-Input QuickAmp Labeling Kit", "concentration": "Not Specified", "supplier": "Agilent Technologies" },
+              { "item": "SurePrint G3 Mouse Gene Expression v2 8 × 60 K Microarray Kits", "concentration": "Not Specified", "supplier": "Agilent Technologies" }
+            ],
+            "software": [
+              { "name": "Feature Extraction", "version": null },
+              { "name": "Gene Spring GX", "version": "13.1.1" }
+            ],
+            "parameters": {
+              "age_at_sample_collection": "8-9 weeks"
+            }
+          }
+        },
+        {
+          "step_id": "S5.2",
+          "step_label": "RT-qPCR analysis",
+          "objective": "Validate gene expression levels using RT-qPCR.",
+          "rationale": "To confirm microarray findings.",
+          "type": "Gene expression analysis",
+          "inputs": ["homozygous KO lines (A and D)", "from_step:S5.1"],
+          "outputs": ["validated gene expression data"],
+          "references": ["Fig. 4b", "Supplementary Table S5"],
+          "details": {
+            "equipment": [
+              { "item": "7900HT Sequence Detector system", "model": "7900HT", "manufacturer": "Applied Biosystems" }
+            ],
+            "reagents": [
+              { "item": "SuperScript III First-Strand Synthesis System", "concentration": "Not Specified", "supplier": "Invitrogen" }
+            ],
+            "software": [],
+            "parameters": {}
+          }
+        },
+        {
+          "step_id": "S5.3",
+          "step_label": "ChIP analysis",
+          "objective": "Analyze histone modifications on the Slc6a3 gene.",
+          "rationale": "To investigate epigenetic regulation of Slc6a3 expression.",
+          "type": "Chromatin immunoprecipitation",
+          "inputs": ["homozygous KO lines (A and D)"],
+          "outputs": ["histone modification data"],
+          "references": ["Fig. 4c", "Supplementary Table S5"],
+          "details": {
+            "equipment": [
+              { "item": "Covaris S220 instrument", "model": "S220", "manufacturer": "Covaris" },
+              { "item": "ABI 7900HT Sequence Detector", "model": "7900HT", "manufacturer": "Thermo Fisher Scientific" }
+            ],
+            "reagents": [
+              { "item": "truChIP Tissue Chromatin Shearing Reagent kits", "concentration": "Not Specified", "supplier": "Covaris" },
+              { "item": "Dynabeads Protein G", "concentration": "Not Specified", "supplier": "Invitrogen" }
+            ],
+            "software": [],
+            "parameters": {}
+          }
+        },
+        {
+          "step_id": "S5.4",
+          "step_label": "Dopamine measurement",
+          "objective": "Measure dopamine concentrations in midbrain.",
+          "rationale": "To assess potential changes in dopamine neurotransmission.",
+          "type": "Biochemical analysis",
+          "inputs": ["homozygous KO lines (A and D)"],
+          "outputs": ["dopamine concentration data"],
+          "references": ["Fig. 4d"],
+          "details": {
+            "equipment": [
+              { "item": "HPLC system", "model": "EP-300", "manufacturer": "Eicom" },
+              { "item": "ECD-300 electrochemical detector", "model": "ECD-300", "manufacturer": "Eicom" },
+              { "item": "PowerChrom system", "model": null, "manufacturer": "eDAQ" }
+            ],
+            "reagents": [
+              { "item": "isoproterenol", "concentration": "150 ng/tissue", "supplier": "Not Specified" }
+            ],
+            "software": [],
+            "parameters": {}
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+
+2025-06-27 12:52:59,973 - app.services.gemini_service - INFO - ================================================================================
+2025-06-27 12:52:59,974 - app.services.gemini_service - INFO - 🧹 CLEANED RESPONSE TEXT LENGTH: 12950
+2025-06-27 12:52:59,974 - app.services.gemini_service - INFO - ✂️ REMOVED MARKDOWN CODE BLOCKS
+2025-06-27 12:52:59,974 - app.services.gemini_service - INFO - 📝 FINAL TEXT BEFORE JSON PARSE:
+2025-06-27 12:52:59,974 - app.services.gemini_service - INFO - First 500 chars: <thinking>
+The plan is to systematically go through the research paper and populate the JSON object according to the schema.  I will divide the workflow into stages based on the paper's structure (Generation of nonagouti KO lines, Physiological parameters, Behavioural analysis, Tameness test, Gene expression and biochemical analysis of the midbrain). Each stage will be broken into individual steps.  I will pay close attention to extract all parameters, equipment, reagents, software used, and ref...
+2025-06-27 12:52:59,975 - app.services.gemini_service - ERROR - Invalid JSON response from Gemini: Expecting value: line 1 column 1 (char 0)
+2025-06-27 12:52:59,975 - app.services.gemini_service - INFO - 🎯 Using sample workflow (no API key or AI failed)
+2025-06-27 12:52:59,975 - app.services.gemini_service - INFO - 🎯 PARSED WORKFLOW JSON:
+2025-06-27 12:52:59,975 - app.services.gemini_service - INFO - ================================================================================
+2025-06-27 12:52:59,976 - app.services.gemini_service - INFO - {
+  "success": true,
+  "workflow": {
+    "stages": {
+      "S1": {
+        "label": "Sample Preparation",
+        "description": "Initial sample collection and preparation steps for the experiment."
+      },
+      "S2": {
+        "label": "Experimental Treatment",
+        "description": "Application of experimental conditions and treatments to prepared samples."
+      },
+      "S3": {
+        "label": "Data Collection",
+        "description": "Measurement and recording of experimental outcomes and observations."
+      },
+      "S4": {
+        "label": "Data Analysis",
+        "description": "Statistical analysis and interpretation of collected experimental data."
+      }
+    },
+    "stageEdges": [
+      {
+        "from": "S1",
+        "to": "S2",
+        "label": "Prepared Samples \u2192 Treatment",
+        "description": "Prepared samples proceed to experimental treatment phase."
+      },
+      {
+        "from": "S2",
+        "to": "S3",
+        "label": "Treatment \u2192 Measurement",
+        "description": "Treated samples are measured and data is collected."
+      },
+      {
+        "from": "S3",
+        "to": "S4",
+        "label": "Data \u2192 Analysis",
+        "description": "Collected data undergoes statistical analysis."
+      }
+    ],
+    "steps": {
+      "S1.1": {
+        "label": "Sample Collection",
+        "type": "Experimental",
+        "description": "Collection of biological or material samples for analysis.",
+        "metadata": {
+          "sample_type": "biological",
+          "collection_method": "standard protocol"
+        }
+      },
+      "S1.2": {
+        "label": "Sample Processing",
+        "type": "Experimental",
+        "description": "Processing and preparation of collected samples for experimentation.",
+        "metadata": {
+          "processing_time": "2 hours",
+          "temperature": "room temperature"
+        }
+      },
+      "S2.1": {
+        "label": "Treatment Application",
+        "type": "Experimental",
+        "description": "Application of experimental treatment to prepared samples.",
+        "metadata": {
+          "treatment_duration": "24 hours",
+          "conditions": "controlled environment"
+        }
+      }
+    },
+    "stepEdges": [
+      {
+        "from": "S1.1",
+        "to": "S1.2",
+        "relation": "preceded_by",
+        "description": "Samples must be collected before processing.",
+        "label": "Sequential"
+      },
+      {
+        "from": "S1.2",
+        "to": "S2.1",
+        "relation": "generates",
+        "description": "Processed samples enable treatment application.",
+        "label": "Generated"
+      }
+    ]
+  }
+}
+2025-06-27 12:52:59,976 - app.services.gemini_service - INFO - ================================================================================
+2025-06-27 12:52:59,976 - app.services.workflow_generator - INFO - Successfully generated workflow from PDF
+<thinking>
+The plan is to systematically go through the research paper and populate the JSON object according to the schema.  I will divide the workflow into stages based on the paper's structure (Generation of nonagouti KO lines, Physiological parameters, Behavioural analysis, Tameness test, Gene expression and biochemical analysis of the midbrain). Each stage will be broken into individual steps.  I will pay close attention to extract all parameters, equipment, reagents, software used, and references to figures and tables. The inputs and outputs will be carefully connected between steps to show the workflow.  Any missing information will be denoted as "Not Specified" or null.
+</thinking>
+```
+
+```json
+{
+  "paper_title": "CRISPR/Cas9-mediated genome editing in wild-derived mice: generation of tamed wild-derived strains by mutation of the a (nonagouti) gene",
+  "citation": {
+    "text": "Hirose, M. et al. CRISPR/Cas9-mediated genome editing in wild-derived mice: generation of tamed wild-derived strains by mutation of the a (nonagouti) gene. Sci. Rep. 7, 42476; doi: 10.1038/srep42476 (2017).",
+    "doi_url": "https://doi.org/10.1038/srep42476"
+  },
+  "workflow": [
+    {
+      "stage_id": "S1",
+      "stage_label": "Generation of nonagouti KO lines",
+      "stage_description": "Generation of nonagouti knockout (KO) mice using CRISPR/Cas9 system.",
+      "steps": [
+        {
+          "step_id": "S1.1",
+          "step_label": "Design and validation of sgRNA",
+          "objective": "Design and validate sgRNA sequences targeting the nonagouti (a) gene in MSM/Ms mice.",
+          "rationale": "To ensure high efficacy of double-strand break (DSB)-mediated homology-dependent repair.",
+          "type": "In silico design and in vitro validation",
+          "inputs": [],
+          "outputs": ["validated sgRNA sequences"],
+          "references": ["Supplementary Fig. S1", "Supplementary Table S4", "Supplementary Table S5", "http://molossinus.lab.nig.ac.jp/msmdb/"],
+          "details": {
+            "equipment": [],
+            "reagents": [],
+            "software": [],
+            "parameters": {}
+          }
+        },
+        {
+          "step_id": "S1.2",
+          "step_label": "CRISPR/Cas9 construct preparation",
+          "objective": "Construct CRISPR/Cas9 vectors containing validated sgRNA sequences.",
+          "rationale": "To deliver the CRISPR/Cas9 system into mouse zygotes.",
+          "type": "Molecular cloning",
+          "inputs": ["validated sgRNA sequences"],
+          "outputs": ["CRISPR/Cas9 constructs"],
+          "references": ["Fig. 1a", "http://www.addgene.org/42230/", "Supplementary Table S5"],
+          "details": {
+            "equipment": [],
+            "reagents": [],
+            "software": [],
+            "parameters": {}
+          }
+        },
+        {
+          "step_id": "S1.3",
+          "step_label": "Zygote injection and culture",
+          "objective": "Inject CRISPR/Cas9 constructs into mouse zygotes and culture.",
+          "type": "Microinjection and cell culture",
+          "inputs": ["CRISPR/Cas9 constructs", "MSM/Ms mouse zygotes"],
+          "outputs": ["2-cell stage embryos"],
+          "references": ["Table 1", "Fig. 1a"],
+          "details": {
+            "equipment": [
+              { "item": "NEPA21 electroporator", "model": "NEPA21", "manufacturer": "Nepa Gene Co., Ltd." },
+              { "item": "Fluorescence microscope", "model": "BZ-9000", "manufacturer": "Keyence" },
+              { "item": "BZ-II Analyzer image analysis system", "model": null, "manufacturer": "Keyence" }
+            ],
+            "reagents": [
+              { "item": "KSOM medium", "concentration": "Not Specified", "supplier": "Not Specified" }
+            ],
+            "software": [],
+            "parameters": {
+              "plasmid_concentration": "5 ng/μl",
+              "culture_temperature": "37 °C",
+              "culture_CO2": "5%",
+              "culture_duration": "24 h",
+              "zygotes_injected": "127"
+            }
+          }
+        },
+        {
+          "step_id": "S1.4",
+          "step_label": "Embryo transfer and pup development",
+          "objective": "Transfer embryos to recipient mice and monitor pup development.",
+          "type": "Embryo transfer",
+          "inputs": ["2-cell stage embryos"],
+          "outputs": ["F0 pups"],
+          "references": ["Table 1", "Fig. 1a", "Fig. 1b"],
+          "details": {
+            "equipment": [],
+            "reagents": [
+              { "item": "cyclosporin A", "concentration": "1 or 2 mg/kg", "supplier": "Sigma-Aldrich" }
+            ],
+            "software": [],
+            "parameters": {}
+          }
+        },
+        {
+          "step_id": "S1.5",
+          "step_label": "Genotyping and line establishment",
+          "objective": "Genotype F0 pups and establish homozygous KO lines.",
+          "type": "Genotyping and breeding",
+          "inputs": ["F0 pups"],
+          "outputs": ["homozygous KO lines (A and D)"],
+          "references": ["Fig. 1c", "Fig. 1d", "Supplementary Fig. S2", "Supplementary Fig. S3", "Supplementary Table S5"],
+          "details": {
+            "equipment": [],
+            "reagents": [],
+            "software": [],
+            "parameters": {}
+          }
+        }
+      ]
+    },
+    {
+      "stage_id": "S2",
+      "stage_label": "Physiological parameters",
+      "stage_description": "Analysis of physiological parameters in KO mice.",
+      "steps": [
+        {
+          "step_id": "S2.1",
+          "step_label": "Modified SHIRPA and serum analysis",
+          "objective": "Analyze physiological and serum parameters using modified SHIRPA protocol and serum biochemistry.",
+          "rationale": "To assess potential physiological differences between WT and KO mice.",
+          "type": "Phenotyping",
+          "inputs": ["homozygous KO lines (A and D)"],
+          "outputs": ["physiological data"],
+          "references": ["Supplementary Fig. S4", "Supplementary Fig. S5", "Supplementary Fig. S6", "http://ja.brc.riken.jp/lab/jmc/mouse_clinic/en/"],
+          "details": {
+            "equipment": [],
+            "reagents": [],
+            "software": [],
+            "parameters": {
+              "age_at_testing": ["8 weeks", "19 weeks", "26 weeks"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "stage_id": "S3",
+      "stage_label": "Behavioural analysis",
+      "stage_description": "Analysis of behavioral parameters in KO mice.",
+      "steps": [
+        {
+          "step_id": "S3.1",
+          "step_label": "Behavioral tests",
+          "objective": "Perform behavioral tests (light/dark transition, open-field, home cage activity).",
+          "rationale": "To assess behavioral differences between WT and KO mice.",
+          "type": "Behavioral assays",
+          "inputs": ["homozygous KO lines (A and D)"],
+          "outputs": ["behavioral data"],
+          "references": ["Fig. 2", "http://ja.brc.riken.jp/lab/jmc/mouse_clinic/en/"],
+          "details": {
+            "equipment": [],
+            "reagents": [],
+            "software": [],
+            "parameters": {
+              "age_at_testing": ["8 weeks", "9 weeks", "10 weeks", "10-11 weeks"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "stage_id": "S4",
+      "stage_label": "Tameness test",
+      "stage_description": "Assessment of tameness in KO mice.",
+      "steps": [
+        {
+          "step_id": "S4.1",
+          "step_label": "Stay-on-hand test",
+          "objective": "Assess tameness using the stay-on-hand test.",
+          "rationale": "To quantify the tameness phenotype.",
+          "type": "Behavioral assay",
+          "inputs": ["homozygous KO lines (A and D)"],
+          "outputs": ["tameness data"],
+          "references": ["Fig. 3", "Supplementary Movies S1 and S2"],
+          "details": {
+            "equipment": [],
+            "reagents": [],
+            "software": [],
+            "parameters": {
+              "age_at_testing": ["6 weeks", "8 weeks"],
+              "max_time_per_trial": "10s",
+              "number_of_trials": "3"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "stage_id": "S5",
+      "stage_label": "Gene expression and biochemical analysis",
+      "stage_description": "Analysis of gene expression and dopamine levels in midbrain.",
+      "steps": [
+        {
+          "step_id": "S5.1",
+          "step_label": "Microarray analysis",
+          "objective": "Analyze gene expression in midbrain using microarray.",
+          "rationale": "To identify genes potentially involved in altered behavior.",
+          "type": "Gene expression analysis",
+          "inputs": ["homozygous KO lines (A and D)"],
+          "outputs": ["gene expression data"],
+          "references": ["Fig. 4a", "Supplementary Table S1", "Supplementary Table S2", "Supplementary Table S3", "Supplementary Fig. S7", "http://www.ncbi.nlm.nih.gov/geo/", "GSE84840", "http://www.genome.jp/kegg/", "https://david.ncifcrf.gov"],
+          "details": {
+            "equipment": [
+              { "item": "DNA microarray scanner", "model": null, "manufacturer": "Agilent Technologies" }
+            ],
+            "reagents": [
+              { "item": "Triazol", "concentration": "Not Specified", "supplier": "Thermo Fisher Scientific" },
+              { "item": "Low-Input QuickAmp Labeling Kit", "concentration": "Not Specified", "supplier": "Agilent Technologies" },
+              { "item": "SurePrint G3 Mouse Gene Expression v2 8 × 60 K Microarray Kits", "concentration": "Not Specified", "supplier": "Agilent Technologies" }
+            ],
+            "software": [
+              { "name": "Feature Extraction", "version": null },
+              { "name": "Gene Spring GX", "version": "13.1.1" }
+            ],
+            "parameters": {
+              "age_at_sample_collection": "8-9 weeks"
+            }
+          }
+        },
+        {
+          "step_id": "S5.2",
+          "step_label": "RT-qPCR analysis",
+          "objective": "Validate gene expression levels using RT-qPCR.",
+          "rationale": "To confirm microarray findings.",
+          "type": "Gene expression analysis",
+          "inputs": ["homozygous KO lines (A and D)", "from_step:S5.1"],
+          "outputs": ["validated gene expression data"],
+          "references": ["Fig. 4b", "Supplementary Table S5"],
+          "details": {
+            "equipment": [
+              { "item": "7900HT Sequence Detector system", "model": "7900HT", "manufacturer": "Applied Biosystems" }
+            ],
+            "reagents": [
+              { "item": "SuperScript III First-Strand Synthesis System", "concentration": "Not Specified", "supplier": "Invitrogen" }
+            ],
+            "software": [],
+            "parameters": {}
+          }
+        },
+        {
+          "step_id": "S5.3",
+          "step_label": "ChIP analysis",
+          "objective": "Analyze histone modifications on the Slc6a3 gene.",
+          "rationale": "To investigate epigenetic regulation of Slc6a3 expression.",
+          "type": "Chromatin immunoprecipitation",
+          "inputs": ["homozygous KO lines (A and D)"],
+          "outputs": ["histone modification data"],
+          "references": ["Fig. 4c", "Supplementary Table S5"],
+          "details": {
+            "equipment": [
+              { "item": "Covaris S220 instrument", "model": "S220", "manufacturer": "Covaris" },
+              { "item": "ABI 7900HT Sequence Detector", "model": "7900HT", "manufacturer": "Thermo Fisher Scientific" }
+            ],
+            "reagents": [
+              { "item": "truChIP Tissue Chromatin Shearing Reagent kits", "concentration": "Not Specified", "supplier": "Covaris" },
+              { "item": "Dynabeads Protein G", "concentration": "Not Specified", "supplier": "Invitrogen" }
+            ],
+            "software": [],
+            "parameters": {}
+          }
+        },
+        {
+          "step_id": "S5.4",
+          "step_label": "Dopamine measurement",
+          "objective": "Measure dopamine concentrations in midbrain.",
+          "rationale": "To assess potential changes in dopamine neurotransmission.",
+          "type": "Biochemical analysis",
+          "inputs": ["homozygous KO lines (A and D)"],
+          "outputs": ["dopamine concentration data"],
+          "references": ["Fig. 4d"],
+          "details": {
+            "equipment": [
+              { "item": "HPLC system", "model": "EP-300", "manufacturer": "Eicom" },
+              { "item": "ECD-300 electrochemical detector", "model": "ECD-300", "manufacturer": "Eicom" },
+              { "item": "PowerChrom system", "model": null, "manufacturer": "eDAQ" }
+            ],
+            "reagents": [
+              { "item": "isoproterenol", "concentration": "150 ng/tissue", "supplier": "Not Specified" }
+            ],
+            "software": [],
+            "parameters": {}
+          }
+        }
+      ]
+    }
+  ]
+}
+INFO:     127.0.0.1:51233 - "POST /api/upload HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2025-06-27 12:54:02,144 - app.main - INFO - Shutting down Workflow Generator API
+INFO:     Application shutdown complete.
+INFO:     Finished server process [34379]
+INFO:     Stopping reloader process [32759]

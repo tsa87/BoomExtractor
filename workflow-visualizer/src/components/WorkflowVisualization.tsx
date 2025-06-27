@@ -1,15 +1,15 @@
 import React, { useState, useCallback, useMemo, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import {
-    ReactFlow,
-    Node,
-    Edge,
-    Controls,
-    Background,
-    useNodesState,
-    useEdgesState,
-    ConnectionMode,
-    Panel,
+  ReactFlow,
+  Node,
+  Edge,
+  Controls,
+  Background,
+  useNodesState,
+  useEdgesState,
+  ConnectionMode,
+  Panel,
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 import { Workflow, ViewMode } from '../types/workflow';
@@ -308,345 +308,342 @@ const ReactFlowContainer = styled.div<{ isVisible: boolean }>`
 `;
 
 const nodeTypes = {
-    stage: StageNode,
-    step: StepNode,
+  stage: StageNode,
+  step: StepNode,
 };
 
 const edgeTypes = {
-    default: EdgeLabel,
+  default: EdgeLabel,
 };
 
 interface WorkflowVisualizationProps {
-    workflow: Workflow;
-    onBackToUpload?: () => void;
+  workflow: Workflow;
+  onBackToUpload?: () => void;
 }
 
 const WorkflowVisualization: React.FC<WorkflowVisualizationProps> = ({ workflow, onBackToUpload }) => {
-    const [viewMode, setViewMode] = useState<ViewMode>({ mode: 'stages' });
-    const [isLoading, setIsLoading] = useState(true);
-    const [loadingProgress, setLoadingProgress] = useState(0);
-    const [loadingStep, setLoadingStep] = useState('Initializing...');
-    const [showWelcome, setShowWelcome] = useState(false);
-    const [isInitialized, setIsInitialized] = useState(false);
+  const [viewMode, setViewMode] = useState<ViewMode>({ mode: 'stages' });
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadingProgress, setLoadingProgress] = useState(0);
+  const [loadingStep, setLoadingStep] = useState('Initializing...');
+  const [showWelcome, setShowWelcome] = useState(false);
+  const [isInitialized, setIsInitialized] = useState(false);
 
-    const [nodes, setNodes, onNodesChange] = useNodesState([]);
-    const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+  const [nodes, setNodes, onNodesChange] = useNodesState([]);
+  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
 
-    // Initialize application with loading simulation
-    useEffect(() => {
-        const loadingSteps = [
-            { step: 'Loading workflow data...', progress: 20 },
-            { step: 'Processing stage relationships...', progress: 40 },
-            { step: 'Calculating node positions...', progress: 60 },
-            { step: 'Preparing visualization...', progress: 80 },
-            { step: 'Ready!', progress: 100 },
-        ];
+  // Initialize application with loading simulation
+  useEffect(() => {
+    const loadingSteps = [
+      { step: 'Loading workflow data...', progress: 20 },
+      { step: 'Processing stage relationships...', progress: 40 },
+      { step: 'Calculating node positions...', progress: 60 },
+      { step: 'Preparing visualization...', progress: 80 },
+      { step: 'Ready!', progress: 100 },
+    ];
 
-        let currentStep = 0;
-        const interval = setInterval(() => {
-            if (currentStep < loadingSteps.length) {
-                setLoadingStep(loadingSteps[currentStep].step);
-                setLoadingProgress(loadingSteps[currentStep].progress);
-                currentStep++;
-            } else {
-                clearInterval(interval);
-                setTimeout(() => {
-                    setIsLoading(false);
-                    const hasSeenWelcome = localStorage.getItem('hasSeenWorkflowWelcome');
-                    if (!hasSeenWelcome) {
-                        setTimeout(() => setShowWelcome(true), 500);
-                    } else {
-                        setTimeout(() => setIsInitialized(true), 500);
-                    }
-                }, 500);
-            }
-        }, 600);
+    let currentStep = 0;
+    const interval = setInterval(() => {
+      if (currentStep < loadingSteps.length) {
+        setLoadingStep(loadingSteps[currentStep].step);
+        setLoadingProgress(loadingSteps[currentStep].progress);
+        currentStep++;
+      } else {
+        clearInterval(interval);
+        setTimeout(() => {
+          setIsLoading(false);
+          const hasSeenWelcome = localStorage.getItem('hasSeenWorkflowWelcome');
+          if (!hasSeenWelcome) {
+            setTimeout(() => setShowWelcome(true), 500);
+          } else {
+            setTimeout(() => setIsInitialized(true), 500);
+          }
+        }, 500);
+      }
+    }, 600);
 
-        return () => clearInterval(interval);
-    }, []);
+    return () => clearInterval(interval);
+  }, []);
 
-    const handleWelcomeComplete = () => {
-        localStorage.setItem('hasSeenWorkflowWelcome', 'true');
-        setShowWelcome(false);
-        setTimeout(() => setIsInitialized(true), 300);
-    };
+  const handleWelcomeComplete = () => {
+    localStorage.setItem('hasSeenWorkflowWelcome', 'true');
+    setShowWelcome(false);
+    setTimeout(() => setIsInitialized(true), 300);
+  };
 
-    // Helper function to create hierarchical layout
-    const createHierarchicalLayout = (stepEntries: [string, any][], stepEdges: any[]) => {
-        const positions: Record<string, { x: number; y: number }> = {};
-        const levels: Record<string, number> = {};
+  // Helper function to create zig-zag layout
+  const createZigZagLayout = (stepEntries: [string, any][], stepEdges: any[]) => {
+    const positions: Record<string, { x: number; y: number }> = {};
 
-        // Calculate levels based on dependencies
-        const calculateLevel = (stepId: string, visited = new Set()): number => {
-            if (visited.has(stepId)) return 0; // Prevent infinite loops
-            if (levels[stepId] !== undefined) return levels[stepId];
+    // Corrected zig-zag arrangement - proper snake pattern
+    const nodesPerRow = 2; // Two nodes per row
 
-            visited.add(stepId);
-            const incomingEdges = stepEdges.filter(edge => edge.to === stepId);
+    stepEntries.forEach(([stepId], index) => {
+      const rowIndex = Math.floor(index / nodesPerRow);
+      const colIndex = index % nodesPerRow;
 
-            if (incomingEdges.length === 0) {
-                levels[stepId] = 0;
-            } else {
-                const maxParentLevel = Math.max(
-                    ...incomingEdges.map(edge => calculateLevel(edge.from, visited))
-                );
-                levels[stepId] = maxParentLevel + 1;
-            }
+      // Calculate X position based on zig-zag pattern
+      let x;
+      if (rowIndex % 2 === 0) {
+        // Even rows: left to right (0, 1)
+        x = 200 + colIndex * 600;
+      } else {
+        // Odd rows: right to left (1, 0)
+        x = 200 + (1 - colIndex) * 600;
+      }
 
-            visited.delete(stepId);
-            return levels[stepId];
+      positions[stepId] = {
+        x: x,
+        y: 200 + rowIndex * 350 // Vertical spacing between rows
+      };
+    });
+
+    return positions;
+  };
+
+  // Generate nodes and edges based on current view mode
+  const { currentNodes, currentEdges } = useMemo(() => {
+    if (viewMode.mode === 'stages') {
+      // Show high-level stages in hierarchical layout (ordered by workflow progression)
+      const stageEntries = Object.entries(workflow.stages);
+
+      // Sort stages by their natural order (S1, S2, S3, etc.)
+      stageEntries.sort(([idA], [idB]) => {
+        const numA = parseInt(idA.substring(1));
+        const numB = parseInt(idB.substring(1));
+        return numA - numB;
+      });
+
+      const stageNodes: Node[] = stageEntries.map(([id, stage], index) => {
+        // Corrected zig-zag layout: proper snake pattern
+        const nodesPerRow = 2; // Two nodes per row
+        const rowIndex = Math.floor(index / nodesPerRow);
+        const colIndex = index % nodesPerRow;
+
+        // Calculate X position based on zig-zag pattern
+        let x;
+        if (rowIndex % 2 === 0) {
+          // Even rows: left to right (0, 1)
+          x = 200 + colIndex * 600;
+        } else {
+          // Odd rows: right to left (1, 0)
+          x = 200 + (1 - colIndex) * 600;
+        }
+
+        const y = 200 + rowIndex * 350; // Vertical spacing between rows
+
+        return {
+          id,
+          type: 'stage',
+          position: { x, y },
+          data: {
+            label: stage.label,
+            description: stage.description,
+            stageId: id,
+            onDrillDown: () => setViewMode({ mode: 'steps', selectedStage: id })
+          },
+          draggable: true,
+        };
+      });
+
+      const stageEdges: Edge[] = workflow.stageEdges.map((edge, index) => ({
+        id: `stage-edge-${index}`,
+        source: edge.from,
+        target: edge.to,
+        type: 'default',
+        data: { label: edge.label, description: edge.description },
+        animated: true,
+        style: { stroke: '#4a5568', strokeWidth: 8 },
+      }));
+
+      return { currentNodes: stageNodes, currentEdges: stageEdges };
+    } else {
+      // Show detailed steps for selected stage in hierarchical layout
+      const selectedStage = viewMode.selectedStage;
+      if (!selectedStage) return { currentNodes: [], currentEdges: [] };
+
+      const stageSteps = Object.entries(workflow.steps).filter(([id]) =>
+        id.startsWith(selectedStage + '.')
+      );
+
+      const relevantStepEdges = workflow.stepEdges.filter(edge =>
+        edge.from.startsWith(selectedStage + '.') && edge.to.startsWith(selectedStage + '.')
+      );
+
+      // Create zig-zag layout
+      const positions = createZigZagLayout(stageSteps, relevantStepEdges);
+
+      const stepNodes: Node[] = stageSteps.map(([id, step], index) => {
+        const stepNumber = index + 1;
+        // Fallback positioning with corrected zig-zag pattern
+        const fallbackRowIndex = Math.floor(index / 2);
+        const fallbackColIndex = index % 2;
+        let fallbackX;
+        if (fallbackRowIndex % 2 === 0) {
+          // Even rows: left to right
+          fallbackX = 200 + fallbackColIndex * 600;
+        } else {
+          // Odd rows: right to left
+          fallbackX = 200 + (1 - fallbackColIndex) * 600;
+        }
+        const position = positions[id] || {
+          x: fallbackX,
+          y: 200 + fallbackRowIndex * 350
         };
 
-        // Calculate levels for all steps
-        stepEntries.forEach(([stepId]) => {
-            calculateLevel(stepId);
-        });
+        return {
+          id,
+          type: 'step',
+          position,
+          data: {
+            label: step.label,
+            description: step.description,
+            type: step.type,
+            metadata: step.metadata,
+            stepNumber: stepNumber,
+          },
+          draggable: true,
+        };
+      });
 
-        // Group steps by level
-        const levelGroups: Record<number, string[]> = {};
-        Object.entries(levels).forEach(([stepId, level]) => {
-            if (!levelGroups[level]) levelGroups[level] = [];
-            levelGroups[level].push(stepId);
-        });
+      const stepEdges: Edge[] = relevantStepEdges.map((edge, index) => ({
+        id: `step-edge-${index}`,
+        source: edge.from,
+        target: edge.to,
+        type: 'default',
+        data: { label: edge.relation || edge.label, description: edge.description },
+        animated: edge.relation === 'generates',
+        style: {
+          stroke: edge.relation === 'generates' ? '#38a169' : '#4a5568',
+          strokeWidth: 8
+        },
+      }));
 
-        // Position nodes
-        const nodeWidth = 300;
-        const nodeHeight = 200;
-        const levelSpacing = 250;
-        const nodeSpacing = 350;
+      return { currentNodes: stepNodes, currentEdges: stepEdges };
+    }
+  }, [viewMode, workflow]);
 
-        Object.entries(levelGroups).forEach(([levelStr, stepIds]) => {
-            const level = parseInt(levelStr);
-            const y = 150 + level * levelSpacing;
+  // Update nodes and edges when view mode changes with staggered animation
+  useEffect(() => {
+    if (!isInitialized) return;
 
-            stepIds.forEach((stepId, index) => {
-                const totalWidth = (stepIds.length - 1) * nodeSpacing;
-                const startX = (window.innerWidth - totalWidth) / 2;
-                const x = startX + index * nodeSpacing;
+    // Clear existing nodes/edges first
+    setNodes([]);
+    setEdges([]);
 
-                positions[stepId] = { x, y };
-            });
-        });
+    // Add new nodes/edges with slight delay for smooth transition
+    setTimeout(() => {
+      setNodes(currentNodes);
+      setTimeout(() => {
+        setEdges(currentEdges);
+      }, 200);
+    }, 100);
+  }, [currentNodes, currentEdges, setNodes, setEdges, isInitialized]);
 
-        return positions;
-    };
+  const handleBackToStages = useCallback(() => {
+    setViewMode({ mode: 'stages' });
+  }, []);
 
-    // Generate nodes and edges based on current view mode
-    const { currentNodes, currentEdges } = useMemo(() => {
-        if (viewMode.mode === 'stages') {
-            // Show high-level stages in hierarchical layout (ordered by workflow progression)
-            const stageEntries = Object.entries(workflow.stages);
+  return (
+    <Container>
+      {/* Loading Screen */}
+      <LoadingOverlay isVisible={isLoading}>
+        <LoadingContent>
+          <LoadingTitle>📄 Boom Paper Extractor</LoadingTitle>
+          <LoadingSubtitle>Preparing your visualization</LoadingSubtitle>
+          <LoadingSpinner />
+          <ProgressBar>
+            <ProgressFill progress={loadingProgress} />
+          </ProgressBar>
+          <LoadingStep>{loadingStep}</LoadingStep>
+        </LoadingContent>
+      </LoadingOverlay>
 
-            // Sort stages by their natural order (S1, S2, S3, etc.)
-            stageEntries.sort(([idA], [idB]) => {
-                const numA = parseInt(idA.substring(1));
-                const numB = parseInt(idB.substring(1));
-                return numA - numB;
-            });
+      {/* Welcome Modal */}
+      <WelcomeOverlay isVisible={showWelcome}>
+        <WelcomeModal>
+          <WelcomeTitle>🎉 Welcome to Workflow Visualization!</WelcomeTitle>
+          <WelcomeText>
+            Explore complex scientific workflows in an intuitive, hierarchical way.
+          </WelcomeText>
+          <FeatureList>
+            <FeatureItem>📊 <strong>High-level stages</strong> - Start with the big picture</FeatureItem>
+            <FeatureItem>🔬 <strong>Detailed steps</strong> - Click any stage to dive deeper</FeatureItem>
+            <FeatureItem>🔗 <strong>Clear connections</strong> - Follow the workflow progression</FeatureItem>
+            <FeatureItem>🎯 <strong>Interactive exploration</strong> - Drag, zoom, and navigate freely</FeatureItem>
+          </FeatureList>
+          <WelcomeButton onClick={handleWelcomeComplete}>
+            Let's Explore! 🚀
+          </WelcomeButton>
+        </WelcomeModal>
+      </WelcomeOverlay>
 
-            const stageNodes: Node[] = stageEntries.map(([id, stage], index) => {
-                // Hierarchical layout: stages arranged vertically with earlier steps at top
-                const x = 400; // Center horizontally
-                const y = 150 + index * 280; // Vertical spacing of 280px between stages
+      {/* Main UI */}
+      <Header isVisible={isInitialized}>
+        <Title>Boom Paper Extractor</Title>
+        <Subtitle>
+          Explore research workflows hierarchically - from high-level stages to detailed experimental steps
+        </Subtitle>
+        <NavigationBar>
+          {onBackToUpload && (
+            <NavButton onClick={onBackToUpload}>
+              ← Upload New PDF
+            </NavButton>
+          )}
+          <NavButton
+            active={viewMode.mode === 'stages'}
+            onClick={handleBackToStages}
+          >
+            📊 High-Level Stages
+          </NavButton>
+          {viewMode.selectedStage && (
+            <>
+              <Breadcrumb>
+                <span>→</span>
+                <NavButton active={viewMode.mode === 'steps'}>
+                  🔬 {workflow.stages[viewMode.selectedStage]?.label}
+                </NavButton>
+              </Breadcrumb>
+            </>
+          )}
+        </NavigationBar>
+      </Header>
 
-                return {
-                    id,
-                    type: 'stage',
-                    position: { x, y },
-                    data: {
-                        label: stage.label,
-                        description: stage.description,
-                        stageId: id,
-                        onDrillDown: () => setViewMode({ mode: 'steps', selectedStage: id })
-                    },
-                    draggable: true,
-                };
-            });
+      <ReactFlowContainer isVisible={isInitialized}>
+        <ReactFlow
+          nodes={nodes}
+          edges={edges}
+          onNodesChange={onNodesChange}
+          onEdgesChange={onEdgesChange}
+          nodeTypes={nodeTypes}
+          edgeTypes={edgeTypes}
+          connectionMode={ConnectionMode.Loose}
+          fitView
+          fitViewOptions={{ padding: 0.1 }}
+          nodesDraggable={true}
+        >
+          <Background color="#aaa" gap={16} />
+          <Controls />
 
-            const stageEdges: Edge[] = workflow.stageEdges.map((edge, index) => ({
-                id: `stage-edge-${index}`,
-                source: edge.from,
-                target: edge.to,
-                type: 'default',
-                data: { label: edge.label, description: edge.description },
-                animated: true,
-                style: { stroke: '#4a5568', strokeWidth: 8 },
-            }));
-
-            return { currentNodes: stageNodes, currentEdges: stageEdges };
-        } else {
-            // Show detailed steps for selected stage in hierarchical layout
-            const selectedStage = viewMode.selectedStage;
-            if (!selectedStage) return { currentNodes: [], currentEdges: [] };
-
-            const stageSteps = Object.entries(workflow.steps).filter(([id]) =>
-                id.startsWith(selectedStage + '.')
-            );
-
-            const relevantStepEdges = workflow.stepEdges.filter(edge =>
-                edge.from.startsWith(selectedStage + '.') && edge.to.startsWith(selectedStage + '.')
-            );
-
-            // Create hierarchical layout
-            const positions = createHierarchicalLayout(stageSteps, relevantStepEdges);
-
-            const stepNodes: Node[] = stageSteps.map(([id, step], index) => {
-                const stepNumber = index + 1;
-                const position = positions[id] || { x: 100 + (index % 3) * 300, y: 150 + Math.floor(index / 3) * 200 };
-
-                return {
-                    id,
-                    type: 'step',
-                    position,
-                    data: {
-                        label: step.label,
-                        description: step.description,
-                        type: step.type,
-                        metadata: step.metadata,
-                        stepNumber: stepNumber,
-                    },
-                    draggable: true,
-                };
-            });
-
-            const stepEdges: Edge[] = relevantStepEdges.map((edge, index) => ({
-                id: `step-edge-${index}`,
-                source: edge.from,
-                target: edge.to,
-                type: 'default',
-                data: { label: edge.relation || edge.label, description: edge.description },
-                animated: edge.relation === 'generates',
-                style: {
-                    stroke: edge.relation === 'generates' ? '#38a169' : '#4a5568',
-                    strokeWidth: 8
-                },
-            }));
-
-            return { currentNodes: stepNodes, currentEdges: stepEdges };
-        }
-    }, [viewMode, workflow]);
-
-    // Update nodes and edges when view mode changes with staggered animation
-    useEffect(() => {
-        if (!isInitialized) return;
-
-        // Clear existing nodes/edges first
-        setNodes([]);
-        setEdges([]);
-
-        // Add new nodes/edges with slight delay for smooth transition
-        setTimeout(() => {
-            setNodes(currentNodes);
-            setTimeout(() => {
-                setEdges(currentEdges);
-            }, 200);
-        }, 100);
-    }, [currentNodes, currentEdges, setNodes, setEdges, isInitialized]);
-
-    const handleBackToStages = useCallback(() => {
-        setViewMode({ mode: 'stages' });
-    }, []);
-
-    return (
-        <Container>
-            {/* Loading Screen */}
-            <LoadingOverlay isVisible={isLoading}>
-                <LoadingContent>
-                    <LoadingTitle>🧬 Scientific Workflow</LoadingTitle>
-                    <LoadingSubtitle>Preparing your visualization</LoadingSubtitle>
-                    <LoadingSpinner />
-                    <ProgressBar>
-                        <ProgressFill progress={loadingProgress} />
-                    </ProgressBar>
-                    <LoadingStep>{loadingStep}</LoadingStep>
-                </LoadingContent>
-            </LoadingOverlay>
-
-            {/* Welcome Modal */}
-            <WelcomeOverlay isVisible={showWelcome}>
-                <WelcomeModal>
-                    <WelcomeTitle>🎉 Welcome to Workflow Visualization!</WelcomeTitle>
-                    <WelcomeText>
-                        Explore complex scientific workflows in an intuitive, hierarchical way.
-                    </WelcomeText>
-                    <FeatureList>
-                        <FeatureItem>📊 <strong>High-level stages</strong> - Start with the big picture</FeatureItem>
-                        <FeatureItem>🔬 <strong>Detailed steps</strong> - Click any stage to dive deeper</FeatureItem>
-                        <FeatureItem>🔗 <strong>Clear connections</strong> - Follow the workflow progression</FeatureItem>
-                        <FeatureItem>🎯 <strong>Interactive exploration</strong> - Drag, zoom, and navigate freely</FeatureItem>
-                    </FeatureList>
-                    <WelcomeButton onClick={handleWelcomeComplete}>
-                        Let's Explore! 🚀
-                    </WelcomeButton>
-                </WelcomeModal>
-            </WelcomeOverlay>
-
-            {/* Main UI */}
-            <Header isVisible={isInitialized}>
-                <Title>Scientific Workflow Visualization</Title>
-                <Subtitle>
-                    Explore research workflows hierarchically - from high-level stages to detailed experimental steps
-                </Subtitle>
-                <NavigationBar>
-                    {onBackToUpload && (
-                        <NavButton onClick={onBackToUpload}>
-                            ← Upload New PDF
-                        </NavButton>
-                    )}
-                    <NavButton
-                        active={viewMode.mode === 'stages'}
-                        onClick={handleBackToStages}
-                    >
-                        📊 High-Level Stages
-                    </NavButton>
-                    {viewMode.selectedStage && (
-                        <>
-                            <Breadcrumb>
-                                <span>→</span>
-                                <NavButton active={viewMode.mode === 'steps'}>
-                                    🔬 {workflow.stages[viewMode.selectedStage]?.label}
-                                </NavButton>
-                            </Breadcrumb>
-                        </>
-                    )}
-                </NavigationBar>
-            </Header>
-
-            <ReactFlowContainer isVisible={isInitialized}>
-                <ReactFlow
-                    nodes={nodes}
-                    edges={edges}
-                    onNodesChange={onNodesChange}
-                    onEdgesChange={onEdgesChange}
-                    nodeTypes={nodeTypes}
-                    edgeTypes={edgeTypes}
-                    connectionMode={ConnectionMode.Loose}
-                    fitView
-                    fitViewOptions={{ padding: 0.1 }}
-                    nodesDraggable={true}
-                >
-                    <Background color="#aaa" gap={16} />
-                    <Controls />
-
-                    <Panel position="bottom-right">
-                        <div style={{
-                            background: 'rgba(255, 255, 255, 0.9)',
-                            padding: '10px',
-                            borderRadius: '8px',
-                            fontSize: '12px',
-                            color: '#4a5568'
-                        }}>
-                            {viewMode.mode === 'stages' ? (
-                                <div>💡 Click on a stage to explore detailed steps</div>
-                            ) : (
-                                <div>🔍 Viewing detailed steps for {workflow.stages[viewMode.selectedStage!]?.label}</div>
-                            )}
-                        </div>
-                    </Panel>
-                </ReactFlow>
-            </ReactFlowContainer>
-        </Container>
-    );
+          <Panel position="bottom-right">
+            <div style={{
+              background: 'rgba(255, 255, 255, 0.9)',
+              padding: '10px',
+              borderRadius: '8px',
+              fontSize: '12px',
+              color: '#4a5568'
+            }}>
+              {viewMode.mode === 'stages' ? (
+                <div>💡 Click on a stage to explore detailed steps</div>
+              ) : (
+                <div>🔍 Viewing detailed steps for {workflow.stages[viewMode.selectedStage!]?.label}</div>
+              )}
+            </div>
+          </Panel>
+        </ReactFlow>
+      </ReactFlowContainer>
+    </Container>
+  );
 };
 
 export default WorkflowVisualization; 

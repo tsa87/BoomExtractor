@@ -194,6 +194,15 @@ interface StepNodeProps {
 const StepNode: React.FC<StepNodeProps> = ({ data }) => {
   const [metadataExpanded, setMetadataExpanded] = useState(false);
 
+  // Defensive check for data
+  if (!data) {
+    return (
+      <StepContainer stepType="default">
+        <div>No step data available</div>
+      </StepContainer>
+    );
+  }
+
   const getStepIcon = (type: string): string => {
     switch (type) {
       case 'Experimental': return '🧪';
@@ -212,10 +221,15 @@ const StepNode: React.FC<StepNodeProps> = ({ data }) => {
     return String(value);
   };
 
+  // Provide default values to prevent null/undefined errors
+  const stepType = data.type || 'default';
+  const stepLabel = data.label || 'Untitled Step';
+  const stepDescription = data.description || 'No description available';
+
   return (
-    <StepContainer stepType={data.type}>
+    <StepContainer stepType={stepType}>
       {data.stepNumber && (
-        <StepNumber stepType={data.type}>
+        <StepNumber stepType={stepType}>
           {data.stepNumber}
         </StepNumber>
       )}
@@ -232,18 +246,18 @@ const StepNode: React.FC<StepNodeProps> = ({ data }) => {
       />
 
       <StepHeader>
-        <StepTypeIcon stepType={data.type}>
-          {getStepIcon(data.type)}
+        <StepTypeIcon stepType={stepType}>
+          {getStepIcon(stepType)}
         </StepTypeIcon>
         <StepInfo>
-          <StepTitle>{data.label}</StepTitle>
-          <StepType stepType={data.type}>{data.type}</StepType>
+          <StepTitle>{stepLabel}</StepTitle>
+          <StepType stepType={stepType}>{stepType}</StepType>
         </StepInfo>
       </StepHeader>
 
-      <StepDescription>{data.description}</StepDescription>
+      <StepDescription>{stepDescription}</StepDescription>
 
-      {Object.keys(data.metadata).length > 0 && (
+      {data.metadata && Object.keys(data.metadata).length > 0 && (
         <>
           <MetadataToggle
             onClick={() => setMetadataExpanded(!metadataExpanded)}

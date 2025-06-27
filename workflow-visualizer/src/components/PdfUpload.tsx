@@ -47,10 +47,10 @@ const Subtitle = styled.p`
 
 const DropZone = styled.div<{ isDragOver: boolean; isDisabled: boolean }>`
   border: 2px dashed ${props => {
-        if (props.isDisabled) return '#cbd5e0';
-        if (props.isDragOver) return '#4299e1';
-        return '#a0aec0';
-    }};
+    if (props.isDisabled) return '#cbd5e0';
+    if (props.isDragOver) return '#4299e1';
+    return '#a0aec0';
+  }};
   border-radius: 16px;
   padding: 40px 20px;
   text-align: center;
@@ -58,10 +58,10 @@ const DropZone = styled.div<{ isDragOver: boolean; isDisabled: boolean }>`
   transition: all 0.3s ease;
   margin-bottom: 24px;
   background: ${props => {
-        if (props.isDisabled) return '#f7fafc';
-        if (props.isDragOver) return 'rgba(66, 153, 225, 0.05)';
-        return 'rgba(74, 85, 104, 0.02)';
-    }};
+    if (props.isDisabled) return '#f7fafc';
+    if (props.isDragOver) return 'rgba(66, 153, 225, 0.05)';
+    return 'rgba(74, 85, 104, 0.02)';
+  }};
   
   &:hover {
     border-color: ${props => props.isDisabled ? '#cbd5e0' : '#4299e1'};
@@ -161,154 +161,154 @@ const RetryButton = styled.button`
 `;
 
 interface PdfUploadProps {
-    onWorkflowGenerated: (workflow: any) => void;
+  onWorkflowGenerated: (workflow: any) => void;
 }
 
 const PdfUpload: React.FC<PdfUploadProps> = ({ onWorkflowGenerated }) => {
-    const [isDragOver, setIsDragOver] = useState(false);
-    const [isProcessing, setIsProcessing] = useState(false);
-    const [error, setError] = useState<string | null>(null);
+  const [isDragOver, setIsDragOver] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-    const uploadFile = async (file: File) => {
-        setIsProcessing(true);
-        setError(null);
+  const uploadFile = async (file: File) => {
+    setIsProcessing(true);
+    setError(null);
 
-        try {
-            const formData = new FormData();
-            formData.append('file', file);
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
 
-            const response = await fetch('http://localhost:8000/api/upload', {
-                method: 'POST',
-                body: formData,
-            });
+      const response = await fetch('http://localhost:8000/api/upload', {
+        method: 'POST',
+        body: formData,
+      });
 
-            const result = await response.json();
+      const result = await response.json();
 
-            if (response.ok && result.success) {
-                onWorkflowGenerated(result.workflow);
-            } else {
-                setError(result.detail || result.error || 'Failed to process PDF');
-            }
-        } catch (err) {
-            setError('Network error: Unable to connect to server');
-        } finally {
-            setIsProcessing(false);
-        }
-    };
+      if (response.ok && result.success) {
+        onWorkflowGenerated(result.workflow);
+      } else {
+        setError(result.detail || result.error || 'Failed to process PDF');
+      }
+    } catch (err) {
+      setError('Network error: Unable to connect to server');
+    } finally {
+      setIsProcessing(false);
+    }
+  };
 
-    const handleFileSelect = useCallback((file: File) => {
-        if (file.type !== 'application/pdf') {
-            setError('Please select a PDF file');
-            return;
-        }
-
-        if (file.size > 50 * 1024 * 1024) {
-            setError('File size must be less than 50MB');
-            return;
-        }
-
-        uploadFile(file);
-    }, []);
-
-    const handleDrop = useCallback((e: React.DragEvent) => {
-        e.preventDefault();
-        setIsDragOver(false);
-
-        if (isProcessing) return;
-
-        const files = Array.from(e.dataTransfer.files);
-        if (files.length > 0) {
-            handleFileSelect(files[0]);
-        }
-    }, [handleFileSelect, isProcessing]);
-
-    const handleDragOver = useCallback((e: React.DragEvent) => {
-        e.preventDefault();
-        if (!isProcessing) {
-            setIsDragOver(true);
-        }
-    }, [isProcessing]);
-
-    const handleDragLeave = useCallback((e: React.DragEvent) => {
-        e.preventDefault();
-        setIsDragOver(false);
-    }, []);
-
-    const handleFileInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-        const files = e.target.files;
-        if (files && files.length > 0) {
-            handleFileSelect(files[0]);
-        }
-    }, [handleFileSelect]);
-
-    const handleRetry = () => {
-        setError(null);
-    };
-
-    if (isProcessing) {
-        return (
-            <Container>
-                <UploadCard>
-                    <ProcessingContainer>
-                        <Spinner />
-                        <ProcessingText>🧬 Analyzing PDF</ProcessingText>
-                        <ProcessingSubtext>
-                            Extracting text and generating workflow visualization...
-                            <br />This may take a few moments.
-                        </ProcessingSubtext>
-                    </ProcessingContainer>
-                </UploadCard>
-            </Container>
-        );
+  const handleFileSelect = useCallback((file: File) => {
+    if (file.type !== 'application/pdf') {
+      setError('Please select a PDF file');
+      return;
     }
 
+    if (file.size > 50 * 1024 * 1024) {
+      setError('File size must be less than 50MB');
+      return;
+    }
+
+    uploadFile(file);
+  }, []);
+
+  const handleDrop = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragOver(false);
+
+    if (isProcessing) return;
+
+    const files = Array.from(e.dataTransfer.files);
+    if (files.length > 0) {
+      handleFileSelect(files[0]);
+    }
+  }, [handleFileSelect, isProcessing]);
+
+  const handleDragOver = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    if (!isProcessing) {
+      setIsDragOver(true);
+    }
+  }, [isProcessing]);
+
+  const handleDragLeave = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragOver(false);
+  }, []);
+
+  const handleFileInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (files && files.length > 0) {
+      handleFileSelect(files[0]);
+    }
+  }, [handleFileSelect]);
+
+  const handleRetry = () => {
+    setError(null);
+  };
+
+  if (isProcessing) {
     return (
-        <Container>
-            <UploadCard>
-                <Title>🧬 Scientific Workflow Generator</Title>
-                <Subtitle>
-                    Upload a scientific paper (PDF) to automatically generate an interactive workflow visualization
-                </Subtitle>
-
-                {error && (
-                    <ErrorContainer>
-                        <ErrorText>⚠️ Upload Failed</ErrorText>
-                        <ErrorDetails>{error}</ErrorDetails>
-                        <RetryButton onClick={handleRetry}>Try Again</RetryButton>
-                    </ErrorContainer>
-                )}
-
-                <DropZone
-                    isDragOver={isDragOver}
-                    isDisabled={isProcessing}
-                    onDrop={handleDrop}
-                    onDragOver={handleDragOver}
-                    onDragLeave={handleDragLeave}
-                    onClick={() => {
-                        if (!isProcessing) {
-                            document.getElementById('file-input')?.click();
-                        }
-                    }}
-                >
-                    <UploadIcon>📄</UploadIcon>
-                    <UploadText>
-                        {isDragOver ? 'Drop PDF here' : 'Click to upload or drag & drop'}
-                    </UploadText>
-                    <UploadSubtext>
-                        PDF files only • Max 50MB
-                    </UploadSubtext>
-                </DropZone>
-
-                <HiddenInput
-                    id="file-input"
-                    type="file"
-                    accept=".pdf"
-                    onChange={handleFileInputChange}
-                    disabled={isProcessing}
-                />
-            </UploadCard>
-        </Container>
+      <Container>
+        <UploadCard>
+          <ProcessingContainer>
+            <Spinner />
+            <ProcessingText>📄 Analyzing PDF</ProcessingText>
+            <ProcessingSubtext>
+              Extracting text and generating workflow visualization...
+              <br />This may take a few moments.
+            </ProcessingSubtext>
+          </ProcessingContainer>
+        </UploadCard>
+      </Container>
     );
+  }
+
+  return (
+    <Container>
+      <UploadCard>
+        <Title>📄 Boom Paper Extractor</Title>
+        <Subtitle>
+          Upload a scientific paper (PDF) to automatically generate an interactive workflow visualization
+        </Subtitle>
+
+        {error && (
+          <ErrorContainer>
+            <ErrorText>⚠️ Upload Failed</ErrorText>
+            <ErrorDetails>{error}</ErrorDetails>
+            <RetryButton onClick={handleRetry}>Try Again</RetryButton>
+          </ErrorContainer>
+        )}
+
+        <DropZone
+          isDragOver={isDragOver}
+          isDisabled={isProcessing}
+          onDrop={handleDrop}
+          onDragOver={handleDragOver}
+          onDragLeave={handleDragLeave}
+          onClick={() => {
+            if (!isProcessing) {
+              document.getElementById('file-input')?.click();
+            }
+          }}
+        >
+          <UploadIcon>📄</UploadIcon>
+          <UploadText>
+            {isDragOver ? 'Drop PDF here' : 'Click to upload or drag & drop'}
+          </UploadText>
+          <UploadSubtext>
+            PDF files only • Max 50MB
+          </UploadSubtext>
+        </DropZone>
+
+        <HiddenInput
+          id="file-input"
+          type="file"
+          accept=".pdf"
+          onChange={handleFileInputChange}
+          disabled={isProcessing}
+        />
+      </UploadCard>
+    </Container>
+  );
 };
 
 export default PdfUpload; 
